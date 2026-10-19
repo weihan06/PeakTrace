@@ -1,0 +1,31 @@
+:root {
+  --pt-green: #2f6f4f;
+}
+body { background: var(--bs-tertiary-bg); }
+.navbar-brand { font-weight: 700; letter-spacing: .02em; }
+.navbar { background: var(--pt-green) !important; }
+
+.card { border: 0; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+.stat-big { font-size: 3rem; font-weight: 700; line-height: 1; }
+.stat-label { color: var(--bs-secondary-color); font-size: .875rem; }
+
+.progress-ring { --p: 0; width: 160px; aspect-ratio: 1; border-radius: 50%;
+  background: conic-gradient(var(--pt-green) calc(var(--p) * 1%), var(--bs-secondary-bg) 0);
+  display: grid; place-items: center; margin: auto; }
+.progress-ring > div { width: 76%; aspect-ratio: 1; border-radius: 50%; background: var(--bs-body-bg);
+  display: grid; place-items: center; text-align: center; }
+
+.peak-map { height: 460px; border-radius: .5rem; z-index: 0; }
+.peak-map.small { height: 320px; }
+.map-legend { background: rgba(255,255,255,.9); padding: 4px 8px; border-radius: 4px; font-size: 12px; color: #333; }
+.map-legend span { margin-right: 8px; white-space: nowrap; }
+.map-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 4px; vertical-align: -1px; }
+
+.wx-day { min-width: 92px; text-align: center; }
+.wx-day .icon { font-size: 1.8rem; }
+.wx-day.in-trip { background: rgba(253,126,20,.12); border: 2px solid #fd7e14; }
+.wx-scroll { display: flex; gap: .5rem; overflow-x: auto; padding-bottom: .25rem; }
+
+.peak-done { color: var(--bs-success); }
+.table td, .table th { vertical-align: middle; }
+.select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice { font-size: .9rem; }

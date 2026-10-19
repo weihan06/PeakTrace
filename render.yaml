@@ -1,0 +1,15 @@
+# Render Blueprint：免費方案，檔案系統不保留，重啟或重新部署後 SQLite 資料會清空
+services:
+  - type: web
+    name: peaktrace
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /login
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+      - key: SESSION_SECRET
+        generateValue: true

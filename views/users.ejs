@@ -1,0 +1,19 @@
+<%- include('partials/head') %>
+<h1 class="h3 mb-3">山友排行</h1>
+<div class="card p-3">
+  <table class="table table-hover mb-0">
+    <thead><tr><th>#</th><th>山友</th><th>完登</th><th style="width:40%">進度</th><th>最近登頂</th></tr></thead>
+    <tbody>
+    <% users.forEach((u, i) => { %>
+      <tr class="<%= u.id === currentUser.id ? 'table-success' : '' %>">
+        <td><%= i + 1 %></td>
+        <td><a href="/users/<%= u.id %>"><%= u.display_name %></a> <small class="text-body-secondary">@<%= u.username %></small></td>
+        <td><%= u.done %> / 100</td>
+        <td><div class="progress"><div class="progress-bar bg-success" style="width: <%= u.done %>%"></div></div></td>
+        <td class="small"><%= u.last_climb ?? '—' %></td>
+      </tr>
+    <% }) %>
+    </tbody>
+  </table>
+</div>
+<%- include('partials/foot') %>

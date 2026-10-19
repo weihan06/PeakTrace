@@ -1,0 +1,1863 @@
+[
+  {
+    "no": 1,
+    "name": "玉山",
+    "wikiTitle": "玉山",
+    "elevation": 3952.4,
+    "counties": [
+      "南投縣",
+      "嘉義縣",
+      "高雄市"
+    ],
+    "range": "玉山山脈、玉山山塊",
+    "route": "玉山群峰",
+    "nationalPark": "玉山",
+    "grade": 3,
+    "region": "中部",
+    "lat": 23.46999,
+    "lng": 120.95726,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.46999,120.95726",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E7%8E%89%E5%B1%B1"
+  },
+  {
+    "no": 2,
+    "name": "雪山",
+    "wikiTitle": "雪山 (台灣)",
+    "elevation": 3884.6,
+    "counties": [
+      "苗栗縣",
+      "臺中市"
+    ],
+    "range": "雪山山脈、雪山山彙",
+    "route": "雪東線",
+    "nationalPark": "雪霸",
+    "grade": 3,
+    "region": "中部",
+    "lat": 24.3834,
+    "lng": 121.2318,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.3834,121.2318",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E9%9B%AA%E5%B1%B1%20(%E5%8F%B0%E7%81%A3)"
+  },
+  {
+    "no": 3,
+    "name": "玉山東峰",
+    "wikiTitle": "玉山東峰",
+    "elevation": 3872.7,
+    "counties": [
+      "南投縣",
+      "高雄市"
+    ],
+    "range": "玉山山脈、玉山山塊",
+    "route": "玉山群峰",
+    "nationalPark": "玉山",
+    "grade": 3,
+    "region": "中部",
+    "lat": 23.4708,
+    "lng": 120.9657,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.4708,120.9657",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E7%8E%89%E5%B1%B1%E6%9D%B1%E5%B3%B0"
+  },
+  {
+    "no": 4,
+    "name": "玉山南峰",
+    "wikiTitle": "玉山南峰",
+    "elevation": 3856.7,
+    "counties": [
+      "高雄市"
+    ],
+    "range": "玉山山脈、玉山山塊",
+    "route": "玉山群峰",
+    "nationalPark": "玉山",
+    "grade": 4,
+    "region": "南部",
+    "lat": 23.4466,
+    "lng": 120.9588,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.4466,120.9588",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E7%8E%89%E5%B1%B1%E5%8D%97%E5%B3%B0"
+  },
+  {
+    "no": 5,
+    "name": "玉山北峰",
+    "wikiTitle": "玉山北峰",
+    "elevation": 3854.9,
+    "counties": [
+      "南投縣"
+    ],
+    "range": "玉山山脈、玉山山塊",
+    "route": "玉山群峰",
+    "nationalPark": "玉山",
+    "grade": 3,
+    "region": "中部",
+    "lat": 23.4874,
+    "lng": 120.9597,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.4874,120.9597",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E7%8E%89%E5%B1%B1%E5%8C%97%E5%B3%B0"
+  },
+  {
+    "no": 6,
+    "name": "秀姑巒山",
+    "wikiTitle": "秀姑巒山",
+    "elevation": 3826.1,
+    "counties": [
+      "南投縣",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "南二段",
+    "nationalPark": "玉山",
+    "grade": 4,
+    "region": "中部",
+    "lat": 23.49678889,
+    "lng": 121.05755,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.49678889,121.05755",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E7%A7%80%E5%A7%91%E5%B7%92%E5%B1%B1"
+  },
+  {
+    "no": 7,
+    "name": "馬博拉斯山",
+    "wikiTitle": "馬博拉斯山",
+    "elevation": 3774.6,
+    "counties": [
+      "南投縣",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "馬博拉斯橫斷",
+    "nationalPark": "玉山",
+    "grade": 5,
+    "region": "中部",
+    "lat": 23.5203,
+    "lng": 121.0672,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.5203,121.0672",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E9%A6%AC%E5%8D%9A%E6%8B%89%E6%96%AF%E5%B1%B1"
+  },
+  {
+    "no": 8,
+    "name": "南湖大山",
+    "wikiTitle": "南湖大山",
+    "elevation": 3740.9,
+    "counties": [
+      "臺中市"
+    ],
+    "range": "中央山脈、南湖山塊",
+    "route": "北一段",
+    "nationalPark": "太魯閣",
+    "grade": 4,
+    "region": "中部",
+    "lat": 24.362,
+    "lng": 121.43927778,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.362,121.43927778",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%8D%97%E6%B9%96%E5%A4%A7%E5%B1%B1"
+  },
+  {
+    "no": 9,
+    "name": "東小南山",
+    "wikiTitle": "東小南山",
+    "elevation": 3707.9,
+    "counties": [
+      "高雄市"
+    ],
+    "range": "玉山山脈、玉山山塊",
+    "route": "玉山群峰",
+    "nationalPark": "玉山",
+    "grade": 5,
+    "region": "南部",
+    "lat": 23.439,
+    "lng": 120.9634,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.439,120.9634",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E6%9D%B1%E5%B0%8F%E5%8D%97%E5%B1%B1"
+  },
+  {
+    "no": 10,
+    "name": "雪山北峰",
+    "wikiTitle": "雪山北峰",
+    "elevation": 3703,
+    "counties": [
+      "苗栗縣",
+      "臺中市"
+    ],
+    "range": "雪山山脈、雪山山彙",
+    "route": "聖稜線",
+    "nationalPark": "雪霸",
+    "grade": 4,
+    "region": "中部",
+    "lat": 24.41473889,
+    "lng": 121.2404,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.41473889,121.2404",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E9%9B%AA%E5%B1%B1%E5%8C%97%E5%B3%B0"
+  },
+  {
+    "no": 11,
+    "name": "中央尖山",
+    "wikiTitle": "中央尖山",
+    "elevation": 3697.7,
+    "counties": [
+      "臺中市",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、南湖山塊",
+    "route": "北一段",
+    "nationalPark": "太魯閣",
+    "grade": 5,
+    "region": "中部",
+    "lat": 24.31022222,
+    "lng": 121.41627778,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.31022222,121.41627778",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%A4%AE%E5%B0%96%E5%B1%B1"
+  },
+  {
+    "no": 12,
+    "name": "關山",
+    "wikiTitle": "關山",
+    "elevation": 3667.4,
+    "counties": [
+      "高雄市",
+      "臺東縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "南一段",
+    "nationalPark": "玉山",
+    "grade": 5,
+    "region": "南部",
+    "lat": 23.22777778,
+    "lng": 120.91138889,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.22777778,120.91138889",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E9%97%9C%E5%B1%B1"
+  },
+  {
+    "no": 13,
+    "name": "大水窟山",
+    "wikiTitle": "大水窟山",
+    "elevation": 3642.6,
+    "counties": [
+      "南投縣",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "南二段",
+    "nationalPark": "玉山",
+    "grade": 4,
+    "region": "中部",
+    "lat": 23.4738,
+    "lng": 121.0386,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.4738,121.0386",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%A4%A7%E6%B0%B4%E7%AA%9F%E5%B1%B1"
+  },
+  {
+    "no": 14,
+    "name": "南湖大山東峰",
+    "wikiTitle": "南湖大山東峰",
+    "elevation": 3639.4,
+    "counties": [
+      "臺中市",
+      "宜蘭縣",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、南湖山塊",
+    "route": "北一段",
+    "nationalPark": "太魯閣",
+    "grade": 4,
+    "region": "中部",
+    "lat": 24.36555556,
+    "lng": 121.45083333,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.36555556,121.45083333",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%8D%97%E6%B9%96%E5%A4%A7%E5%B1%B1%E6%9D%B1%E5%B3%B0"
+  },
+  {
+    "no": 15,
+    "name": "東郡大山",
+    "wikiTitle": "東郡大山",
+    "elevation": 3617.2,
+    "counties": [
+      "南投縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "東郡山彙",
+    "nationalPark": "無",
+    "grade": 5,
+    "region": "中部",
+    "lat": 23.6267,
+    "lng": 121.0921,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.6267,121.0921",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E6%9D%B1%E9%83%A1%E5%A4%A7%E5%B1%B1"
+  },
+  {
+    "no": 16,
+    "name": "奇萊北峰",
+    "wikiTitle": "奇萊北峰",
+    "elevation": 3605.6,
+    "counties": [
+      "花蓮縣"
+    ],
+    "range": "中央山脈、南湖山塊",
+    "route": "奇萊連峰",
+    "nationalPark": "太魯閣",
+    "grade": 5,
+    "region": "東部",
+    "lat": 24.1178,
+    "lng": 121.335,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.1178,121.335",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%A5%87%E8%90%8A%E5%8C%97%E5%B3%B0"
+  },
+  {
+    "no": 17,
+    "name": "向陽山",
+    "wikiTitle": "向陽山",
+    "elevation": 3601.1,
+    "counties": [
+      "高雄市",
+      "臺東縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "南二段",
+    "nationalPark": "玉山",
+    "grade": 3,
+    "region": "南部",
+    "lat": 23.28425,
+    "lng": 120.99247222,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.28425,120.99247222",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%90%91%E9%99%BD%E5%B1%B1"
+  },
+  {
+    "no": 18,
+    "name": "大劍山",
+    "wikiTitle": "大劍山",
+    "elevation": 3593.3,
+    "counties": [
+      "臺中市"
+    ],
+    "range": "雪山山脈、雪山山彙",
+    "route": "大劍山稜脈",
+    "nationalPark": "雪霸",
+    "grade": 4,
+    "region": "中部",
+    "lat": 24.3409,
+    "lng": 121.2005,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.3409,121.2005",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%A4%A7%E5%8A%8D%E5%B1%B1"
+  },
+  {
+    "no": 19,
+    "name": "雲峰",
+    "wikiTitle": "雲峰",
+    "elevation": 3561.8,
+    "counties": [
+      "高雄市"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "南二段",
+    "nationalPark": "玉山",
+    "grade": 5,
+    "region": "南部",
+    "lat": 23.3537,
+    "lng": 120.9758,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.3537,120.9758",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E9%9B%B2%E5%B3%B0"
+  },
+  {
+    "no": 20,
+    "name": "馬利加南山",
+    "wikiTitle": "馬利加南山",
+    "elevation": 3560.9,
+    "counties": [
+      "南投縣",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "馬博拉斯橫斷",
+    "nationalPark": "玉山",
+    "grade": 5,
+    "region": "中部",
+    "lat": 23.52158333,
+    "lng": 121.11716667,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.52158333,121.11716667",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E9%A6%AC%E5%88%A9%E5%8A%A0%E5%8D%97%E5%B1%B1"
+  },
+  {
+    "no": 21,
+    "name": "奇萊主山",
+    "wikiTitle": "奇萊主山",
+    "elevation": 3560.4,
+    "counties": [
+      "南投縣",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、南湖山塊",
+    "route": "奇萊連峰",
+    "nationalPark": "太魯閣",
+    "grade": 5,
+    "region": "中部",
+    "lat": 24.086,
+    "lng": 121.323,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.086,121.323",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%A5%87%E8%90%8A%E4%B8%BB%E5%B1%B1"
+  },
+  {
+    "no": 22,
+    "name": "南湖北山",
+    "wikiTitle": "南湖北山",
+    "elevation": 3534.2,
+    "counties": [
+      "臺中市",
+      "宜蘭縣"
+    ],
+    "range": "中央山脈、南湖山塊",
+    "route": "北一段",
+    "nationalPark": "太魯閣",
+    "grade": 4,
+    "region": "中部",
+    "lat": 24.38361111,
+    "lng": 121.43722222,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.38361111,121.43722222",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%8D%97%E6%B9%96%E5%8C%97%E5%B1%B1"
+  },
+  {
+    "no": 23,
+    "name": "大雪山",
+    "wikiTitle": "大雪山 (台灣)",
+    "elevation": 3529.6,
+    "counties": [
+      "苗栗縣",
+      "臺中市"
+    ],
+    "range": "雪山山脈、雪山山彙",
+    "route": "大雪山稜脈",
+    "nationalPark": "雪霸",
+    "grade": 5,
+    "region": "中部",
+    "lat": 24.33083333,
+    "lng": 121.12138889,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.33083333,121.12138889",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%A4%A7%E9%9B%AA%E5%B1%B1%20(%E5%8F%B0%E7%81%A3)"
+  },
+  {
+    "no": 24,
+    "name": "品田山",
+    "wikiTitle": "品田山",
+    "elevation": 3527.9,
+    "counties": [
+      "新竹縣",
+      "臺中市"
+    ],
+    "range": "雪山山脈、雪山山彙",
+    "route": "武陵四秀",
+    "nationalPark": "雪霸",
+    "grade": 4,
+    "region": "北部",
+    "lat": 24.4282,
+    "lng": 121.2668,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.4282,121.2668",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%93%81%E7%94%B0%E5%B1%B1"
+  },
+  {
+    "no": 25,
+    "name": "玉山西峰",
+    "wikiTitle": "玉山西峰",
+    "elevation": 3519.1,
+    "counties": [
+      "南投縣",
+      "嘉義縣"
+    ],
+    "range": "玉山山脈、玉山山塊",
+    "route": "玉山群峰",
+    "nationalPark": "玉山",
+    "grade": 3,
+    "region": "中部",
+    "lat": 23.4718602,
+    "lng": 120.933749,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.4718602,120.933749",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E7%8E%89%E5%B1%B1%E8%A5%BF%E5%B3%B0"
+  },
+  {
+    "no": 26,
+    "name": "頭鷹山",
+    "wikiTitle": "頭鷹山",
+    "elevation": 3509.1,
+    "counties": [
+      "苗栗縣",
+      "臺中市"
+    ],
+    "range": "雪山山脈、雪山山彙",
+    "route": "大雪山稜脈",
+    "nationalPark": "雪霸",
+    "grade": 5,
+    "region": "中部",
+    "lat": 24.35944444,
+    "lng": 121.14055556,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.35944444,121.14055556",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E9%A0%AD%E9%B7%B9%E5%B1%B1"
+  },
+  {
+    "no": 27,
+    "name": "南湖大山南峰",
+    "wikiTitle": "南湖大山南峰",
+    "elevation": 3504.9,
+    "counties": [
+      "臺中市",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、南湖山塊",
+    "route": "北一段",
+    "nationalPark": "太魯閣",
+    "grade": 5,
+    "region": "中部",
+    "lat": 24.3478,
+    "lng": 121.4346,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.3478,121.4346",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%8D%97%E6%B9%96%E5%A4%A7%E5%B1%B1%E5%8D%97%E5%B3%B0"
+  },
+  {
+    "no": 28,
+    "name": "三叉山",
+    "wikiTitle": "三叉山",
+    "elevation": 3494.6,
+    "counties": [
+      "高雄市",
+      "花蓮縣",
+      "臺東縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "南二段",
+    "nationalPark": "玉山",
+    "grade": 3,
+    "region": "南部",
+    "lat": 23.2972,
+    "lng": 121.0287,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.2972,121.0287",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E4%B8%89%E5%8F%89%E5%B1%B1"
+  },
+  {
+    "no": 29,
+    "name": "大霸尖山",
+    "wikiTitle": "大霸尖山",
+    "elevation": 3489.8,
+    "counties": [
+      "新竹縣",
+      "苗栗縣"
+    ],
+    "range": "雪山山脈、雪山山彙",
+    "route": "大霸群峰",
+    "nationalPark": "雪霸",
+    "grade": 3,
+    "region": "北部",
+    "lat": 24.4577,
+    "lng": 121.258,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.4577,121.258",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%A4%A7%E9%9C%B8%E5%B0%96%E5%B1%B1"
+  },
+  {
+    "no": 30,
+    "name": "東巒大山",
+    "wikiTitle": "東巒大山",
+    "elevation": 3480.8,
+    "counties": [
+      "南投縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "東郡山彙",
+    "nationalPark": "無",
+    "grade": 5,
+    "region": "中部",
+    "lat": 23.64805556,
+    "lng": 121.08,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.64805556,121.08",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E6%9D%B1%E5%B7%92%E5%A4%A7%E5%B1%B1"
+  },
+  {
+    "no": 31,
+    "name": "無明山",
+    "wikiTitle": "無明山",
+    "elevation": 3449.2,
+    "counties": [
+      "臺中市",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、南湖山塊",
+    "route": "北二段",
+    "nationalPark": "太魯閣",
+    "grade": 5,
+    "region": "中部",
+    "lat": 24.25536111,
+    "lng": 121.38472222,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.25536111,121.38472222",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E7%84%A1%E6%98%8E%E5%B1%B1"
+  },
+  {
+    "no": 32,
+    "name": "巴巴山",
+    "wikiTitle": "巴巴山",
+    "elevation": 3448.2,
+    "counties": [
+      "臺中市",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、南湖山塊",
+    "route": "北一段",
+    "nationalPark": "太魯閣",
+    "grade": 5,
+    "region": "中部",
+    "lat": 24.3425,
+    "lng": 121.43777778,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.3425,121.43777778",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%B7%B4%E5%B7%B4%E5%B1%B1"
+  },
+  {
+    "no": 33,
+    "name": "馬西山",
+    "wikiTitle": "馬西山",
+    "elevation": 3442.6,
+    "counties": [
+      "花蓮縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "馬博拉斯橫斷",
+    "nationalPark": "玉山",
+    "grade": 5,
+    "region": "東部",
+    "lat": 23.48366667,
+    "lng": 121.17391667,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.48366667,121.17391667",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E9%A6%AC%E8%A5%BF%E5%B1%B1"
+  },
+  {
+    "no": 34,
+    "name": "北合歡山",
+    "wikiTitle": "北合歡山",
+    "elevation": 3421.8,
+    "counties": [
+      "南投縣",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、南湖山塊",
+    "route": "合歡群峰",
+    "nationalPark": "太魯閣",
+    "grade": 3,
+    "region": "中部",
+    "lat": 24.18138889,
+    "lng": 121.28166667,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.18138889,121.28166667",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%8C%97%E5%90%88%E6%AD%A1%E5%B1%B1"
+  },
+  {
+    "no": 35,
+    "name": "合歡山東峰",
+    "wikiTitle": "合歡山東峰",
+    "elevation": 3419.3,
+    "counties": [
+      "南投縣",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、南湖山塊",
+    "route": "合歡群峰",
+    "nationalPark": "太魯閣",
+    "grade": 2,
+    "region": "中部",
+    "lat": 24.13555556,
+    "lng": 121.28111111,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.13555556,121.28111111",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%90%88%E6%AD%A1%E5%B1%B1%E6%9D%B1%E5%B3%B0"
+  },
+  {
+    "no": 36,
+    "name": "小霸尖山",
+    "wikiTitle": "小霸尖山",
+    "elevation": 3418.9,
+    "counties": [
+      "苗栗縣"
+    ],
+    "range": "雪山山脈、雪山山彙",
+    "route": "大霸群峰",
+    "nationalPark": "雪霸",
+    "grade": 3,
+    "region": "中部",
+    "lat": 24.45555556,
+    "lng": 121.25138889,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.45555556,121.25138889",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%B0%8F%E9%9C%B8%E5%B0%96%E5%B1%B1"
+  },
+  {
+    "no": 37,
+    "name": "合歡山",
+    "wikiTitle": "合歡山",
+    "elevation": 3416.6,
+    "counties": [
+      "南投縣"
+    ],
+    "range": "中央山脈、南湖山塊",
+    "route": "合歡群峰",
+    "nationalPark": "太魯閣",
+    "grade": 1,
+    "region": "中部",
+    "lat": 24.1425,
+    "lng": 121.27111111,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.1425,121.27111111",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%90%88%E6%AD%A1%E5%B1%B1"
+  },
+  {
+    "no": 38,
+    "name": "南玉山",
+    "wikiTitle": "南玉山",
+    "elevation": 3380.8,
+    "counties": [
+      "高雄市"
+    ],
+    "range": "玉山山脈、玉山山塊",
+    "route": "玉山群峰",
+    "nationalPark": "玉山",
+    "grade": 5,
+    "region": "南部",
+    "lat": 23.43277778,
+    "lng": 120.92444444,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.43277778,120.92444444",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%8D%97%E7%8E%89%E5%B1%B1"
+  },
+  {
+    "no": 39,
+    "name": "畢祿山",
+    "wikiTitle": "畢祿山",
+    "elevation": 3369.9,
+    "counties": [
+      "南投縣",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、南湖山塊",
+    "route": "北二段",
+    "nationalPark": "太魯閣",
+    "grade": 4,
+    "region": "中部",
+    "lat": 24.21358333,
+    "lng": 121.34719444,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.21358333,121.34719444",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E7%95%A2%E7%A5%BF%E5%B1%B1"
+  },
+  {
+    "no": 40,
+    "name": "卓社大山",
+    "wikiTitle": "卓社大山",
+    "elevation": 3368,
+    "counties": [
+      "南投縣"
+    ],
+    "range": "中央山脈、能高干卓萬山塊",
+    "route": "干卓萬群峰",
+    "nationalPark": "無",
+    "grade": 5,
+    "region": "中部",
+    "lat": 23.83444444,
+    "lng": 121.11583333,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.83444444,121.11583333",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%8D%93%E7%A4%BE%E5%A4%A7%E5%B1%B1"
+  },
+  {
+    "no": 41,
+    "name": "南雙頭山",
+    "wikiTitle": "南雙頭山",
+    "elevation": 3358.7,
+    "counties": [
+      "高雄市",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "南二段",
+    "nationalPark": "玉山",
+    "grade": 5,
+    "region": "南部",
+    "lat": 23.34666667,
+    "lng": 121.01541667,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.34666667,121.01541667",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%8D%97%E9%9B%99%E9%A0%AD%E5%B1%B1"
+  },
+  {
+    "no": 42,
+    "name": "奇萊南峰",
+    "wikiTitle": "奇萊南峰",
+    "elevation": 3357.3,
+    "counties": [
+      "南投縣"
+    ],
+    "range": "中央山脈、南湖山塊",
+    "route": "奇萊連峰",
+    "nationalPark": "太魯閣",
+    "grade": 3,
+    "region": "中部",
+    "lat": 24.06122222,
+    "lng": 121.27980556,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.06122222,121.27980556",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%A5%87%E8%90%8A%E5%8D%97%E5%B3%B0"
+  },
+  {
+    "no": 43,
+    "name": "能高山南峰",
+    "wikiTitle": "能高山南峰",
+    "elevation": 3348.5,
+    "counties": [
+      "南投縣",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、能高干卓萬山塊",
+    "route": "能高安東軍",
+    "nationalPark": "無",
+    "grade": 5,
+    "region": "中部",
+    "lat": 23.96527778,
+    "lng": 121.27805556,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.96527778,121.27805556",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E8%83%BD%E9%AB%98%E5%B1%B1%E5%8D%97%E5%B3%B0"
+  },
+  {
+    "no": 44,
+    "name": "白姑大山",
+    "wikiTitle": "白姑大山",
+    "elevation": 3341.3,
+    "counties": [
+      "臺中市",
+      "南投縣"
+    ],
+    "range": "雪山山脈、白姑山群",
+    "route": "白姑山群",
+    "nationalPark": "無",
+    "grade": 4,
+    "region": "中部",
+    "lat": 24.20222222,
+    "lng": 121.10888889,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.20222222,121.10888889",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E7%99%BD%E5%A7%91%E5%A4%A7%E5%B1%B1"
+  },
+  {
+    "no": 45,
+    "name": "新康山",
+    "wikiTitle": "新康山",
+    "elevation": 3339.9,
+    "counties": [
+      "花蓮縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "新康山列",
+    "nationalPark": "玉山",
+    "grade": 5,
+    "region": "東部",
+    "lat": 23.31638889,
+    "lng": 121.1275,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.31638889,121.1275",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E6%96%B0%E5%BA%B7%E5%B1%B1"
+  },
+  {
+    "no": 46,
+    "name": "八通關山",
+    "wikiTitle": "八通關山",
+    "elevation": 3335,
+    "counties": [
+      "南投縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "南二段",
+    "nationalPark": "玉山",
+    "grade": 3,
+    "region": "中部",
+    "lat": 23.49012,
+    "lng": 121.00971,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.49012,121.00971",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%85%AB%E9%80%9A%E9%97%9C%E5%B1%B1"
+  },
+  {
+    "no": 47,
+    "name": "丹大山",
+    "wikiTitle": "丹大山",
+    "elevation": 3329,
+    "counties": [
+      "南投縣",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "丹大山列",
+    "nationalPark": "無",
+    "grade": 5,
+    "region": "中部",
+    "lat": 23.60041667,
+    "lng": 121.21352778,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.60041667,121.21352778",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E4%B8%B9%E5%A4%A7%E5%B1%B1"
+  },
+  {
+    "no": 48,
+    "name": "桃山",
+    "wikiTitle": "桃山 (臺灣)",
+    "elevation": 3323.5,
+    "counties": [
+      "新竹縣",
+      "臺中市"
+    ],
+    "range": "雪山山脈、雪山山彙",
+    "route": "武陵四秀",
+    "nationalPark": "雪霸",
+    "grade": 3,
+    "region": "北部",
+    "lat": 24.43263056,
+    "lng": 121.3049,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.43263056,121.3049",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E6%A1%83%E5%B1%B1%20(%E8%87%BA%E7%81%A3)"
+  },
+  {
+    "no": 49,
+    "name": "佳陽山",
+    "wikiTitle": "佳陽山",
+    "elevation": 3313.7,
+    "counties": [
+      "臺中市"
+    ],
+    "range": "雪山山脈、雪山山彙",
+    "route": "大劍山稜脈",
+    "nationalPark": "雪霸",
+    "grade": 4,
+    "region": "中部",
+    "lat": 24.30638889,
+    "lng": 121.18777778,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.30638889,121.18777778",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E4%BD%B3%E9%99%BD%E5%B1%B1"
+  },
+  {
+    "no": 50,
+    "name": "火石山",
+    "wikiTitle": "火石山",
+    "elevation": 3308.9,
+    "counties": [
+      "苗栗縣",
+      "臺中市"
+    ],
+    "range": "雪山山脈、雪山山彙",
+    "route": "大雪山稜脈",
+    "nationalPark": "雪霸",
+    "grade": 5,
+    "region": "中部",
+    "lat": 24.38194444,
+    "lng": 121.175,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.38194444,121.175",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E7%81%AB%E7%9F%B3%E5%B1%B1"
+  },
+  {
+    "no": 51,
+    "name": "池有山",
+    "wikiTitle": "池有山",
+    "elevation": 3300.2,
+    "counties": [
+      "新竹縣",
+      "臺中市"
+    ],
+    "range": "雪山山脈、雪山山彙",
+    "route": "武陵四秀",
+    "nationalPark": "雪霸",
+    "grade": 3,
+    "region": "北部",
+    "lat": 24.43111111,
+    "lng": 121.28815,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.43111111,121.28815",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E6%B1%A0%E6%9C%89%E5%B1%B1"
+  },
+  {
+    "no": 52,
+    "name": "伊澤山",
+    "wikiTitle": "伊澤山",
+    "elevation": 3296.3,
+    "counties": [
+      "新竹縣",
+      "苗栗縣"
+    ],
+    "range": "雪山山脈、雪山山彙",
+    "route": "大霸群峰",
+    "nationalPark": "雪霸",
+    "grade": 3,
+    "region": "北部",
+    "lat": 24.47,
+    "lng": 121.24416667,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.47,121.24416667",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E4%BC%8A%E6%BE%A4%E5%B1%B1"
+  },
+  {
+    "no": 53,
+    "name": "卑南主山",
+    "wikiTitle": "卑南主山",
+    "elevation": 3293.7,
+    "counties": [
+      "高雄市",
+      "臺東縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "南一段",
+    "nationalPark": "無",
+    "grade": 5,
+    "region": "南部",
+    "lat": 23.05111111,
+    "lng": 120.87416667,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.05111111,120.87416667",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%8D%91%E5%8D%97%E4%B8%BB%E5%B1%B1"
+  },
+  {
+    "no": 54,
+    "name": "志佳陽大山",
+    "wikiTitle": "志佳陽大山",
+    "elevation": 3290.8,
+    "counties": [
+      "臺中市"
+    ],
+    "range": "雪山山脈、雪山山彙",
+    "route": "志佳陽稜脈",
+    "nationalPark": "雪霸",
+    "grade": 3,
+    "region": "中部",
+    "lat": 24.35997222,
+    "lng": 121.24813889,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.35997222,121.24813889",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%BF%97%E4%BD%B3%E9%99%BD%E5%A4%A7%E5%B1%B1"
+  },
+  {
+    "no": 55,
+    "name": "太魯閣大山",
+    "wikiTitle": "太魯閣大山",
+    "elevation": 3282.3,
+    "counties": [
+      "花蓮縣"
+    ],
+    "range": "中央山脈、太魯閣山地",
+    "route": "太魯閣山列",
+    "nationalPark": "太魯閣",
+    "grade": 5,
+    "region": "東部",
+    "lat": 24.07905556,
+    "lng": 121.42102778,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.07905556,121.42102778",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%A4%AA%E9%AD%AF%E9%96%A3%E5%A4%A7%E5%B1%B1"
+  },
+  {
+    "no": 56,
+    "name": "干卓萬山",
+    "wikiTitle": "干卓萬山",
+    "elevation": 3281.8,
+    "counties": [
+      "南投縣"
+    ],
+    "range": "中央山脈、能高干卓萬山塊",
+    "route": "干卓萬群峰",
+    "nationalPark": "無",
+    "grade": 5,
+    "region": "中部",
+    "lat": 23.87602778,
+    "lng": 121.139,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.87602778,121.139",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%B9%B2%E5%8D%93%E8%90%AC%E5%B1%B1"
+  },
+  {
+    "no": 57,
+    "name": "轆轆山",
+    "wikiTitle": "轆轆山",
+    "elevation": 3279,
+    "counties": [
+      "高雄市"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "南二段",
+    "nationalPark": "玉山",
+    "grade": 5,
+    "region": "南部",
+    "lat": 23.39133333,
+    "lng": 120.99811111,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.39133333,120.99811111",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E8%BD%86%E8%BD%86%E5%B1%B1"
+  },
+  {
+    "no": 58,
+    "name": "內嶺爾山",
+    "wikiTitle": "內嶺爾山",
+    "elevation": 3277.7,
+    "counties": [
+      "花蓮縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "丹大山列",
+    "nationalPark": "無",
+    "grade": 5,
+    "region": "東部",
+    "lat": 23.58155556,
+    "lng": 121.19619444,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.58155556,121.19619444",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%85%A7%E5%B6%BA%E7%88%BE%E5%B1%B1"
+  },
+  {
+    "no": 59,
+    "name": "郡大山",
+    "wikiTitle": "郡大山",
+    "elevation": 3277.6,
+    "counties": [
+      "南投縣"
+    ],
+    "range": "玉山山脈、玉山山塊",
+    "route": "郡大山列",
+    "nationalPark": "玉山",
+    "grade": 3,
+    "region": "中部",
+    "lat": 23.57722222,
+    "lng": 120.9625,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.57722222,120.9625",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E9%83%A1%E5%A4%A7%E5%B1%B1"
+  },
+  {
+    "no": 60,
+    "name": "喀西帕南山",
+    "wikiTitle": "喀西帕南山",
+    "elevation": 3276.6,
+    "counties": [
+      "花蓮縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "馬博拉斯橫斷",
+    "nationalPark": "玉山",
+    "grade": 5,
+    "region": "東部",
+    "lat": 23.47055556,
+    "lng": 121.18722222,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.47055556,121.18722222",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%96%80%E8%A5%BF%E5%B8%95%E5%8D%97%E5%B1%B1"
+  },
+  {
+    "no": 61,
+    "name": "鈴鳴山",
+    "wikiTitle": "鈴鳴山",
+    "elevation": 3271.2,
+    "counties": [
+      "臺中市",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、南湖山塊",
+    "route": "北二段",
+    "nationalPark": "太魯閣",
+    "grade": 4,
+    "region": "中部",
+    "lat": 24.24444444,
+    "lng": 121.35166667,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.24444444,121.35166667",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E9%88%B4%E9%B3%B4%E5%B1%B1"
+  },
+  {
+    "no": 62,
+    "name": "能高山",
+    "wikiTitle": "能高山",
+    "elevation": 3260.8,
+    "counties": [
+      "南投縣",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、能高干卓萬山塊",
+    "route": "能高安東軍",
+    "nationalPark": "無",
+    "grade": 5,
+    "region": "中部",
+    "lat": 23.9923,
+    "lng": 121.26,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.9923,121.26",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E8%83%BD%E9%AB%98%E5%B1%B1"
+  },
+  {
+    "no": 63,
+    "name": "萬東山西峰",
+    "wikiTitle": "萬東山西峰",
+    "elevation": 3257.3,
+    "counties": [
+      "南投縣"
+    ],
+    "range": "中央山脈、能高干卓萬山塊",
+    "route": "干卓萬群峰",
+    "nationalPark": "無",
+    "grade": 5,
+    "region": "中部",
+    "lat": 23.85186111,
+    "lng": 121.18547222,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.85186111,121.18547222",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E8%90%AC%E6%9D%B1%E5%B1%B1%E8%A5%BF%E5%B3%B0"
+  },
+  {
+    "no": 64,
+    "name": "劍山",
+    "wikiTitle": "劍山 (台灣)",
+    "elevation": 3256.5,
+    "counties": [
+      "臺中市"
+    ],
+    "range": "雪山山脈、雪山山彙",
+    "route": "大劍山稜脈",
+    "nationalPark": "雪霸",
+    "grade": 5,
+    "region": "中部",
+    "lat": 24.34083333,
+    "lng": 121.20027778,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.34083333,121.20027778",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%8A%8D%E5%B1%B1%20(%E5%8F%B0%E7%81%A3)"
+  },
+  {
+    "no": 65,
+    "name": "義西請馬至山",
+    "wikiTitle": "義西請馬至山",
+    "elevation": 3252,
+    "counties": [
+      "南投縣",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "丹大山列",
+    "nationalPark": "無",
+    "grade": 5,
+    "region": "中部",
+    "lat": 23.58691667,
+    "lng": 121.15316667,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.58691667,121.15316667",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E7%BE%A9%E8%A5%BF%E8%AB%8B%E9%A6%AC%E8%87%B3%E5%B1%B1"
+  },
+  {
+    "no": 66,
+    "name": "小關山",
+    "wikiTitle": "小關山",
+    "elevation": 3248.1,
+    "counties": [
+      "高雄市",
+      "臺東縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "南一段",
+    "nationalPark": "無",
+    "grade": 5,
+    "region": "南部",
+    "lat": 23.15166667,
+    "lng": 120.87611111,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.15166667,120.87611111",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%B0%8F%E9%97%9C%E5%B1%B1"
+  },
+  {
+    "no": 67,
+    "name": "屏風山",
+    "wikiTitle": "屏風山",
+    "elevation": 3247.5,
+    "counties": [
+      "花蓮縣"
+    ],
+    "range": "中央山脈、南湖山塊",
+    "route": "奇萊連峰",
+    "nationalPark": "太魯閣",
+    "grade": 4,
+    "region": "東部",
+    "lat": 24.14922222,
+    "lng": 121.34302778,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.14922222,121.34302778",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%B1%8F%E9%A2%A8%E5%B1%B1"
+  },
+  {
+    "no": 68,
+    "name": "無雙山",
+    "wikiTitle": "無雙山",
+    "elevation": 3242.8,
+    "counties": [
+      "南投縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "東郡山彙",
+    "nationalPark": "無",
+    "grade": 5,
+    "region": "中部",
+    "lat": 23.59094444,
+    "lng": 121.05730556,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.59094444,121.05730556",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E7%84%A1%E9%9B%99%E5%B1%B1"
+  },
+  {
+    "no": 69,
+    "name": "牧山",
+    "wikiTitle": "牧山",
+    "elevation": 3239.3,
+    "counties": [
+      "南投縣"
+    ],
+    "range": "中央山脈、干卓萬山塊",
+    "route": "干卓萬群峰",
+    "nationalPark": "無",
+    "grade": 5,
+    "region": "中部",
+    "lat": 23.86286111,
+    "lng": 121.16011111,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.86286111,121.16011111",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E7%89%A7%E5%B1%B1"
+  },
+  {
+    "no": 70,
+    "name": "石門山",
+    "wikiTitle": "石門山 (南投縣)",
+    "elevation": 3235.9,
+    "counties": [
+      "南投縣",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、南湖山塊",
+    "route": "合歡群峰",
+    "nationalPark": "太魯閣",
+    "grade": 1,
+    "region": "中部",
+    "lat": 24.1525,
+    "lng": 121.28444444,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.1525,121.28444444",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E7%9F%B3%E9%96%80%E5%B1%B1%20(%E5%8D%97%E6%8A%95%E7%B8%A3)"
+  },
+  {
+    "no": 71,
+    "name": "玉山前峰",
+    "wikiTitle": "玉山前峰",
+    "elevation": 3233,
+    "counties": [
+      "南投縣",
+      "嘉義縣"
+    ],
+    "range": "玉山山脈、玉山山塊",
+    "route": "玉山群峰",
+    "nationalPark": "玉山",
+    "grade": 3,
+    "region": "中部",
+    "lat": 23.4756,
+    "lng": 120.91766111,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.4756,120.91766111",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E7%8E%89%E5%B1%B1%E5%89%8D%E5%B3%B0"
+  },
+  {
+    "no": 72,
+    "name": "塔關山",
+    "wikiTitle": "塔關山",
+    "elevation": 3218.5,
+    "counties": [
+      "高雄市",
+      "臺東縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "南橫三星",
+    "nationalPark": "玉山",
+    "grade": 3,
+    "region": "南部",
+    "lat": 23.25194444,
+    "lng": 120.94138889,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.25194444,120.94138889",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%A1%94%E9%97%9C%E5%B1%B1"
+  },
+  {
+    "no": 73,
+    "name": "馬比杉山",
+    "wikiTitle": "馬比杉山",
+    "elevation": 3211,
+    "counties": [
+      "宜蘭縣",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、南湖山塊",
+    "route": "北一段",
+    "nationalPark": "太魯閣",
+    "grade": 5,
+    "region": "東部",
+    "lat": 24.349,
+    "lng": 121.4834,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.349,121.4834",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E9%A6%AC%E6%AF%94%E6%9D%89%E5%B1%B1"
+  },
+  {
+    "no": 74,
+    "name": "達芬尖山",
+    "wikiTitle": "達芬尖山",
+    "elevation": 3206.4,
+    "counties": [
+      "南投縣",
+      "高雄市",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "南二段",
+    "nationalPark": "玉山",
+    "grade": 5,
+    "region": "中部",
+    "lat": 23.43269444,
+    "lng": 121.01311111,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.43269444,121.01311111",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E9%81%94%E8%8A%AC%E5%B0%96%E5%B1%B1"
+  },
+  {
+    "no": 75,
+    "name": "雪山東峰",
+    "wikiTitle": "雪山東峰",
+    "elevation": 3199,
+    "counties": [
+      "臺中市"
+    ],
+    "range": "雪山山脈、雪山山彙",
+    "route": "雪東線",
+    "nationalPark": "雪霸",
+    "grade": 3,
+    "region": "中部",
+    "lat": 24.3887,
+    "lng": 121.272,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.3887,121.272",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E9%9B%AA%E5%B1%B1%E6%9D%B1%E5%B3%B0"
+  },
+  {
+    "no": 76,
+    "name": "南華山",
+    "wikiTitle": "南華山",
+    "elevation": 3181.6,
+    "counties": [
+      "南投縣",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、南湖山塊",
+    "route": "奇萊連峰",
+    "nationalPark": "無",
+    "grade": 3,
+    "region": "中部",
+    "lat": 24.0393,
+    "lng": 121.286,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.0393,121.286",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%8D%97%E8%8F%AF%E5%B1%B1"
+  },
+  {
+    "no": 77,
+    "name": "關山嶺山",
+    "wikiTitle": "關山嶺山",
+    "elevation": 3173.7,
+    "counties": [
+      "高雄市",
+      "臺東縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "南橫三星",
+    "nationalPark": "玉山",
+    "grade": 3,
+    "region": "南部",
+    "lat": 23.271,
+    "lng": 120.9595,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.271,120.9595",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E9%97%9C%E5%B1%B1%E5%B6%BA%E5%B1%B1"
+  },
+  {
+    "no": 78,
+    "name": "海諾南山",
+    "wikiTitle": "海諾南山",
+    "elevation": 3173.2,
+    "counties": [
+      "高雄市",
+      "臺東縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "南一段",
+    "nationalPark": "無",
+    "grade": 5,
+    "region": "南部",
+    "lat": 23.18552778,
+    "lng": 120.91130556,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.18552778,120.91130556",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E6%B5%B7%E8%AB%BE%E5%8D%97%E5%B1%B1"
+  },
+  {
+    "no": 79,
+    "name": "中雪山",
+    "wikiTitle": "中雪山",
+    "elevation": 3172.4,
+    "counties": [
+      "苗栗縣"
+    ],
+    "range": "雪山山脈、雪山山彙",
+    "route": "大雪山稜脈",
+    "nationalPark": "雪霸",
+    "grade": 4,
+    "region": "中部",
+    "lat": 24.33638889,
+    "lng": 121.07777778,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.33638889,121.07777778",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E4%B8%AD%E9%9B%AA%E5%B1%B1"
+  },
+  {
+    "no": 80,
+    "name": "閂山",
+    "wikiTitle": "閂山",
+    "elevation": 3167.5,
+    "counties": [
+      "臺中市"
+    ],
+    "range": "中央山脈、南湖山塊",
+    "route": "北二段",
+    "nationalPark": "太魯閣",
+    "grade": 3,
+    "region": "中部",
+    "lat": 24.25863889,
+    "lng": 121.30988889,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.25863889,121.30988889",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E9%96%82%E5%B1%B1"
+  },
+  {
+    "no": 81,
+    "name": "甘薯峰",
+    "wikiTitle": "甘薯峰",
+    "elevation": 3157.1,
+    "counties": [
+      "臺中市",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、南湖山塊",
+    "route": "北二段",
+    "nationalPark": "太魯閣",
+    "grade": 5,
+    "region": "中部",
+    "lat": 24.29,
+    "lng": 121.38972222,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.29,121.38972222",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E7%94%98%E8%96%AF%E5%B3%B0"
+  },
+  {
+    "no": 82,
+    "name": "西合歡山",
+    "wikiTitle": "西合歡山",
+    "elevation": 3144.1,
+    "counties": [
+      "南投縣"
+    ],
+    "range": "中央山脈、南湖山塊",
+    "route": "合歡群峰",
+    "nationalPark": "太魯閣",
+    "grade": 4,
+    "region": "中部",
+    "lat": 24.1776124,
+    "lng": 121.2445337,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.1776124,121.2445337",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E8%A5%BF%E5%90%88%E6%AD%A1%E5%B1%B1"
+  },
+  {
+    "no": 83,
+    "name": "審馬陣山",
+    "wikiTitle": "審馬陣山",
+    "elevation": 3139.3,
+    "counties": [
+      "臺中市",
+      "宜蘭縣"
+    ],
+    "range": "中央山脈、南湖山塊",
+    "route": "北一段",
+    "nationalPark": "太魯閣",
+    "grade": 3,
+    "region": "中部",
+    "lat": 24.38027778,
+    "lng": 121.4175,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.38027778,121.4175",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%AF%A9%E9%A6%AC%E9%99%A3%E5%B1%B1"
+  },
+  {
+    "no": 84,
+    "name": "喀拉業山",
+    "wikiTitle": "喀拉業山",
+    "elevation": 3132.5,
+    "counties": [
+      "新竹縣",
+      "宜蘭縣"
+    ],
+    "range": "雪山山脈、雪山山彙",
+    "route": "武陵四秀",
+    "nationalPark": "雪霸",
+    "grade": 3,
+    "region": "北部",
+    "lat": 24.45,
+    "lng": 121.32111111,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.45,121.32111111",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%96%80%E6%8B%89%E6%A5%AD%E5%B1%B1"
+  },
+  {
+    "no": 85,
+    "name": "庫哈諾辛山",
+    "wikiTitle": "庫哈諾辛山",
+    "elevation": 3114,
+    "counties": [
+      "高雄市"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "南橫三星",
+    "nationalPark": "玉山",
+    "grade": 3,
+    "region": "南部",
+    "lat": 23.26277778,
+    "lng": 120.9,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.26277778,120.9",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%BA%AB%E5%93%88%E8%AB%BE%E8%BE%9B%E5%B1%B1"
+  },
+  {
+    "no": 86,
+    "name": "加利山",
+    "wikiTitle": "加利山",
+    "elevation": 3111.9,
+    "counties": [
+      "苗栗縣"
+    ],
+    "range": "雪山山脈、雪山山彙",
+    "route": "大霸群峰",
+    "nationalPark": "雪霸",
+    "grade": 3,
+    "region": "中部",
+    "lat": 24.4595,
+    "lng": 121.21622222,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.4595,121.21622222",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%8A%A0%E5%88%A9%E5%B1%B1"
+  },
+  {
+    "no": 87,
+    "name": "白石山",
+    "wikiTitle": "白石山 (台灣)",
+    "elevation": 3106.5,
+    "counties": [
+      "南投縣",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、能高干卓萬山塊",
+    "route": "能高安東軍",
+    "nationalPark": "無",
+    "grade": 5,
+    "region": "中部",
+    "lat": 23.9075,
+    "lng": 121.27472222,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.9075,121.27472222",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E7%99%BD%E7%9F%B3%E5%B1%B1%20(%E5%8F%B0%E7%81%A3)"
+  },
+  {
+    "no": 88,
+    "name": "磐石山",
+    "wikiTitle": "磐石山",
+    "elevation": 3104.9,
+    "counties": [
+      "花蓮縣"
+    ],
+    "range": "中央山脈、太魯閣山地",
+    "route": "太魯閣山列",
+    "nationalPark": "太魯閣",
+    "grade": 5,
+    "region": "東部",
+    "lat": 24.10472222,
+    "lng": 121.38833333,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.10472222,121.38833333",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E7%A3%90%E7%9F%B3%E5%B1%B1"
+  },
+  {
+    "no": 89,
+    "name": "帕托魯山",
+    "wikiTitle": "帕托魯山",
+    "elevation": 3102.1,
+    "counties": [
+      "花蓮縣"
+    ],
+    "range": "中央山脈、太魯閣山地",
+    "route": "太魯閣山列",
+    "nationalPark": "太魯閣",
+    "grade": 5,
+    "region": "東部",
+    "lat": 24.09944444,
+    "lng": 121.46652778,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.09944444,121.46652778",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%B8%95%E6%89%98%E9%AD%AF%E5%B1%B1"
+  },
+  {
+    "no": 90,
+    "name": "北大武山",
+    "wikiTitle": "北大武山",
+    "elevation": 3089.1,
+    "counties": [
+      "屏東縣",
+      "臺東縣"
+    ],
+    "range": "中央山脈、大武地壘",
+    "route": "大武地壘",
+    "nationalPark": "無",
+    "grade": 3,
+    "region": "南部",
+    "lat": 22.62705556,
+    "lng": 120.76138889,
+    "googleMapsUrl": "https://www.google.com/maps?q=22.62705556,120.76138889",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%8C%97%E5%A4%A7%E6%AD%A6%E5%B1%B1"
+  },
+  {
+    "no": 91,
+    "name": "西巒大山",
+    "wikiTitle": "西巒大山",
+    "elevation": 3084.9,
+    "counties": [
+      "南投縣"
+    ],
+    "range": "玉山山脈、玉山山塊",
+    "route": "郡大山列",
+    "nationalPark": "無",
+    "grade": 3,
+    "region": "中部",
+    "lat": 23.69394444,
+    "lng": 120.94738889,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.69394444,120.94738889",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E8%A5%BF%E5%B7%92%E5%A4%A7%E5%B1%B1"
+  },
+  {
+    "no": 92,
+    "name": "立霧主山",
+    "wikiTitle": "立霧主山",
+    "elevation": 3070.6,
+    "counties": [
+      "花蓮縣"
+    ],
+    "range": "中央山脈、太魯閣山地",
+    "route": "太魯閣山列",
+    "nationalPark": "太魯閣",
+    "grade": 5,
+    "region": "東部",
+    "lat": 24.12444444,
+    "lng": 121.44555556,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.12444444,121.44555556",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E7%AB%8B%E9%9C%A7%E4%B8%BB%E5%B1%B1"
+  },
+  {
+    "no": 93,
+    "name": "塔芬山",
+    "wikiTitle": "塔芬山",
+    "elevation": 3068.8,
+    "counties": [
+      "高雄市",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "南二段",
+    "nationalPark": "玉山",
+    "grade": 5,
+    "region": "南部",
+    "lat": 23.40583333,
+    "lng": 121.02666667,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.40583333,121.02666667",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%A1%94%E8%8A%AC%E5%B1%B1"
+  },
+  {
+    "no": 94,
+    "name": "光頭山",
+    "wikiTitle": "光頭山",
+    "elevation": 3066.8,
+    "counties": [
+      "南投縣",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、能高干卓萬山塊",
+    "route": "能高安東軍",
+    "nationalPark": "無",
+    "grade": 5,
+    "region": "中部",
+    "lat": 23.93805556,
+    "lng": 121.27194444,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.93805556,121.27194444",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%85%89%E9%A0%AD%E5%B1%B1"
+  },
+  {
+    "no": 95,
+    "name": "安東軍山",
+    "wikiTitle": "安東軍山",
+    "elevation": 3066.5,
+    "counties": [
+      "南投縣",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、能高干卓萬山塊",
+    "route": "能高安東軍",
+    "nationalPark": "無",
+    "grade": 5,
+    "region": "中部",
+    "lat": 23.87272222,
+    "lng": 121.26611111,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.87272222,121.26611111",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%AE%89%E6%9D%B1%E8%BB%8D%E5%B1%B1"
+  },
+  {
+    "no": 96,
+    "name": "羊頭山",
+    "wikiTitle": "羊頭山",
+    "elevation": 3032.8,
+    "counties": [
+      "花蓮縣"
+    ],
+    "range": "中央山脈、南湖山塊",
+    "route": "北二段",
+    "nationalPark": "太魯閣",
+    "grade": 3,
+    "region": "東部",
+    "lat": 24.20819444,
+    "lng": 121.37977778,
+    "googleMapsUrl": "https://www.google.com/maps?q=24.20819444,121.37977778",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E7%BE%8A%E9%A0%AD%E5%B1%B1"
+  },
+  {
+    "no": 97,
+    "name": "駒盆山",
+    "wikiTitle": "駒盆山",
+    "elevation": 3027,
+    "counties": [
+      "南投縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "馬博拉斯橫斷",
+    "nationalPark": "玉山",
+    "grade": 5,
+    "region": "中部",
+    "lat": 23.54838889,
+    "lng": 121.0325,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.54838889,121.0325",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E9%A7%92%E7%9B%86%E5%B1%B1"
+  },
+  {
+    "no": 98,
+    "name": "布拉克桑山",
+    "wikiTitle": "布拉克桑山",
+    "elevation": 3020.9,
+    "counties": [
+      "花蓮縣",
+      "臺東縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "新康山列",
+    "nationalPark": "無",
+    "grade": 5,
+    "region": "東部",
+    "lat": 23.23313889,
+    "lng": 121.07872222,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.23313889,121.07872222",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%B8%83%E6%8B%89%E5%85%8B%E6%A1%91%E5%B1%B1"
+  },
+  {
+    "no": 99,
+    "name": "六順山",
+    "wikiTitle": "六順山",
+    "elevation": 3009.1,
+    "counties": [
+      "南投縣",
+      "花蓮縣"
+    ],
+    "range": "中央山脈、關山山塊",
+    "route": "丹大山列",
+    "nationalPark": "無",
+    "grade": 4,
+    "region": "中部",
+    "lat": 23.72444444,
+    "lng": 121.23944444,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.72444444,121.23944444",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E5%85%AD%E9%A0%86%E5%B1%B1"
+  },
+  {
+    "no": 100,
+    "name": "鹿山",
+    "wikiTitle": "鹿山 (台灣)",
+    "elevation": 2981.4,
+    "counties": [
+      "高雄市"
+    ],
+    "range": "玉山山脈、玉山山塊",
+    "route": "玉山群峰",
+    "nationalPark": "玉山",
+    "grade": 5,
+    "region": "南部",
+    "lat": 23.45063889,
+    "lng": 120.98861111,
+    "googleMapsUrl": "https://www.google.com/maps?q=23.45063889,120.98861111",
+    "wikiUrl": "https://zh.wikipedia.org/wiki/%E9%B9%BF%E5%B1%B1%20(%E5%8F%B0%E7%81%A3)"
+  }
+]

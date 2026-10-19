@@ -1,0 +1,32 @@
+<%- include('partials/head') %>
+<h1 class="h3 mb-3">發起登山行程</h1>
+<form method="post" action="/plans" class="card p-3">
+  <div class="row g-3">
+    <div class="col-lg-5">
+      <div class="mb-3">
+        <label class="form-label">目標百岳 <small class="text-body-secondary">（可複選，也可點地圖）</small></label>
+        <select id="peakSelect" name="peaks" multiple required></select>
+      </div>
+      <div class="row g-2 mb-3">
+        <div class="col-6"><label class="form-label">出發日期</label>
+          <input type="date" class="form-control" name="startDate" id="startDate" min="<%= today %>" value="<%= form.startDate ?? '' %>" required></div>
+        <div class="col-6"><label class="form-label">結束日期</label>
+          <input type="date" class="form-control" name="endDate" id="endDate" min="<%= today %>" value="<%= form.endDate ?? '' %>"></div>
+      </div>
+      <div class="mb-3"><label class="form-label">行程名稱 <small class="text-body-secondary">（留空則以山名命名）</small></label>
+        <input class="form-control" name="title" value="<%= form.title ?? '' %>" maxlength="60" placeholder="例：雪山主東三天兩夜"></div>
+      <div class="mb-3"><label class="form-label">集合地點 / 時間</label>
+        <input class="form-control" name="meetingPoint" value="<%= form.meetingPoint ?? '' %>" maxlength="100" placeholder="例：台中高鐵站 05:00"></div>
+      <div class="mb-3"><label class="form-label">說明</label>
+        <textarea class="form-control" name="notes" rows="4" maxlength="2000" placeholder="入園申請、山屋、裝備、費用分攤…"><%= form.notes ?? '' %></textarea></div>
+      <button class="btn btn-success w-100"><i class="bi bi-send"></i> 建立行程</button>
+    </div>
+    <div class="col-lg-7"><div id="pickMap" class="peak-map h-100" style="min-height:460px"></div></div>
+  </div>
+</form>
+<script>
+  initPeakPicker({ select: '#peakSelect', map: document.getElementById('pickMap'), preselect: <%- JSON.stringify(form.peaks ?? []) %> });
+  const s = document.getElementById('startDate'), e = document.getElementById('endDate');
+  s.addEventListener('change', () => { e.min = s.value; if (!e.value || e.value < s.value) e.value = s.value; });
+</script>
+<%- include('partials/foot') %>

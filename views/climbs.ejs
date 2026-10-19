@@ -1,0 +1,62 @@
+<%- include('partials/head') %>
+<h1 class="h3 mb-3">登山紀錄</h1>
+
+<div class="card p-3 mb-4">
+  <div class="fw-semibold mb-2"><i class="bi bi-plus-circle"></i> 新增完登</div>
+  <form method="post" action="/climbs">
+    <div class="row g-3">
+      <div class="col-lg-5">
+        <label class="form-label">① 選擇百岳 <small class="text-body-secondary">（可複選，也可直接點地圖）</small></label>
+        <select id="peakSelect" name="peaks" multiple required></select>
+        <div class="row g-2 mt-2">
+          <div class="col-sm-6">
+            <label class="form-label">② 完登日期</label>
+            <input type="date" class="form-control" name="climbDate" max="<%= today %>" value="<%= today %>" required>
+          </div>
+          <div class="col-sm-6">
+            <label class="form-label">備註</label>
+            <input class="form-control" name="note" maxlength="200" placeholder="例：雪東線兩天一夜">
+          </div>
+        </div>
+        <button class="btn btn-success mt-3 w-100"><i class="bi bi-check2-circle"></i> 登記完登</button>
+      </div>
+      <div class="col-lg-7">
+        <div id="pickMap" class="peak-map"></div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="card p-3">
+  <div class="fw-semibold mb-2">我的紀錄（<%= climbs.length %> 筆）</div>
+  <% if (!climbs.length) { %><div class="text-body-secondary">還沒有任何紀錄。</div><% } else { %>
+  <div class="table-responsive">
+  <table class="table table-hover mb-0">
+    <thead><tr><th>完登日期</th><th>編號</th><th>百岳</th><th>高度</th><th>縣市</th><th>區域</th><th>備註</th><th></th></tr></thead>
+    <tbody>
+    <% climbs.forEach((c) => { %>
+      <tr>
+        <td><%= c.climb_date %></td>
+        <td>#<%= c.peak_no %></td>
+        <td><a href="/peaks/<%= c.peak_no %>"><%= c.name %></a></td>
+        <td><%= c.elevation %> m</td>
+        <td class="small"><%= c.counties %></td>
+        <td><%= c.region %></td>
+        <td class="small"><%= c.note ?? '' %></td>
+        <td class="text-end">
+          <form method="post" action="/climbs/<%= c.id %>/delete" onsubmit="return confirm('確定刪除這筆紀錄？')">
+            <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+    </tbody>
+  </table>
+  </div>
+  <% } %>
+</div>
+
+<script>
+  initPeakPicker({ select: '#peakSelect', map: document.getElementById('pickMap'), preselect: <%- JSON.stringify(preselect) %> });
+</script>
+<%- include('partials/foot') %>

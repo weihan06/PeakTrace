@@ -1,0 +1,141 @@
+<%- include('partials/head') %>
+<%
+  const daysLeft = Math.round((Date.parse(plan.start_date) - Date.parse(today)) / 86400000);
+  const ended = plan.end_date < today;
+  const fmtNum = (n, d = 0) => (n == null ? '—' : n.toFixed(d));
+%>
+<div class="d-flex flex-wrap justify-content-between align-items-start mb-3 gap-2">
+  <div>
+    <h1 class="h3 mb-1"><%= plan.title %></h1>
+    <div class="text-body-secondary">
+      <i class="bi bi-calendar-event"></i> <%= plan.start_date %><%= plan.end_date !== plan.start_date ? ' ~ ' + plan.end_date : '' %>
+      <% if (daysLeft > 0) { %><span class="badge text-bg-warning ms-1">倒數 <%= daysLeft %> 天</span>
+      <% } else if (!ended) { %><span class="badge text-bg-success ms-1">進行中</span>
+      <% } else { %><span class="badge text-bg-secondary ms-1">已結束</span><% } %>
+      · 發起人 <%= plan.creator_name %>
+    </div>
+  </div>
+  <div class="d-flex gap-2">
+    <% if (!isMember && !ended) { %>
+      <form method="post" action="/plans/<%= plan.id %>/join"><button class="btn btn-success"><i class="bi bi-person-plus"></i> 我要參加</button></form>
+    <% } else if (isMember && !isCreator && !ended) { %>
+      <form method="post" action="/plans/<%= plan.id %>/leave"><button class="btn btn-outline-secondary">退出行程</button></form>
+    <% } %>
+    <% if (isCreator) { %>
+      <form method="post" action="/plans/<%= plan.id %>/delete" onsubmit="return confirm('確定取消這個行程？')"><button class="btn btn-outline-danger">取消行程</button></form>
+    <% } %>
+  </div>
+</div>
+
+<div class="row g-3 mb-3">
+  <div class="col-lg-4">
+    <div class="card p-3 mb-3">
+      <div class="fw-semibold mb-2">行程資訊</div>
+      <div class="small mb-1"><i class="bi bi-geo"></i> 集合：<%= plan.meeting_point || '未設定' %></div>
+      <% if (plan.notes) { %><div class="small" style="white-space: pre-wrap"><%= plan.notes %></div><% } %>
+    </div>
+    <div class="card p-3">
+      <div class="fw-semibold mb-2">參加山友（<%= members.length %>）</div>
+      <ul class="list-group list-group-flush">
+        <% members.forEach((m) => { const d = memberDone.get(m.id); const n = peaks.filter((p) => d.has(p.no)).length; %>
+        <li class="list-group-item px-0 d-flex justify-content-between">
+          <a href="/users/<%= m.id %>"><%= m.display_name %></a>
+          <span class="small text-body-secondary">百岳 <%= d.size %> 座 · 本次目標已登 <%= n %>/<%= peaks.length %></span>
+        </li>
+        <% }) %>
+      </ul>
+    </div>
+  </div>
+  <div class="col-lg-8"><div class="card p-3 h-100"><div id="map" class="peak-map h-100" style="min-height:360px"></div></div></div>
+</div>
+
+<div class="card p-3 mb-3">
+  <div class="fw-semibold mb-2"><i class="bi bi-flag"></i> 目標資訊</div>
+  <div class="table-responsive">
+  <table class="table table-sm mb-0">
+    <thead><tr><th>編號</th><th>百岳</th><th>高度</th><th>縣市 / 區域</th><th>山脈</th><th>路線</th><th>國家公園</th><th>分級</th><th>座標</th></tr></thead>
+    <tbody>
+    <% peaks.forEach((p) => { %>
+      <tr>
+        <td>#<%= p.no %></td>
+        <td><a href="/peaks/<%= p.no %>" class="fw-semibold"><%= p.name %></a></td>
+        <td><%= p.elevation %> m</td>
+        <td class="small"><%= p.counties %> / <%= p.region %></td>
+        <td class="small"><%= p.range_name %></td>
+        <td class="small"><%= p.route %></td>
+        <td class="small"><%= p.national_park || '—' %></td>
+        <td><%= p.grade ?? '—' %></td>
+        <td class="small"><a href="<%= p.google_maps_url %>" target="_blank" rel="noopener"><i class="bi bi-geo-alt"></i> Google</a></td>
+      </tr>
+    <% }) %>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<div class="card p-3 mb-3">
+  <div class="fw-semibold mb-1"><i class="bi bi-cloud-sun"></i> 山頂氣候</div>
+  <% if (weatherError) { %>
+    <div class="text-danger small">無法取得天氣資料：<%= weatherError %></div>
+  <% } else if (weather.mode === 'past') { %>
+    <div class="text-body-secondary small">行程已結束。</div>
+  <% } else if (weather.mode === 'forecast') { %>
+    <div class="text-body-secondary small mb-2">Open-Meteo 逐日預報（已依山頂高度修正氣溫），橘框為行程日期。
+      <% if (weather.partial) { %>部分日期超出預報範圍（最遠至 <%= weather.lastForecast %>）。<% } %></div>
+    <% peaks.forEach((p) => { const days = weather.perPeak.get(p.no); if (!days) return; %>
+      <div class="mt-2 mb-1 fw-semibold small">#<%= p.no %> <%= p.name %>（<%= p.elevation %> m）</div>
+      <%- include('partials/weather-days', { days }) %>
+    <% }) %>
+  <% } else if (weather.mode === 'climate') { %>
+    <div class="text-body-secondary small mb-2">出發日超過 16 天預報範圍，以下為<b>過去幾年同期</b>的實際觀測作為參考；
+      <%= weather.forecastFrom %> 起可看到正式預報。</div>
+    <div class="table-responsive">
+    <table class="table table-sm mb-0">
+      <thead><tr><th>百岳</th><th>平均高溫</th><th>平均低溫</th><th>日均雨量</th><th>降雨日比例</th><th>歷年同期</th></tr></thead>
+      <tbody>
+      <% peaks.forEach((p) => { const c = weather.perPeak.get(p.no); if (!c) return; %>
+        <tr>
+          <td>#<%= p.no %> <%= p.name %></td>
+          <td class="text-danger"><%= fmtNum(c.avgTmax, 1) %>°C</td>
+          <td class="text-primary"><%= fmtNum(c.avgTmin, 1) %>°C</td>
+          <td><%= fmtNum(c.avgPrecip, 1) %> mm</td>
+          <td><%= c.rainChance == null ? '—' : Math.round(c.rainChance * 100) + '%' %></td>
+          <td class="small">
+            <% c.years.forEach((y) => { %>
+              <span class="me-2 text-nowrap" title="<%= y.text %>"><%= y.year %>: <%= y.icon %> <%= Math.round(y.tmin) %>~<%= Math.round(y.tmax) %>° <%= y.precip.toFixed(0) %>mm</span>
+            <% }) %>
+          </td>
+        </tr>
+      <% }) %>
+      </tbody>
+    </table>
+    </div>
+  <% } %>
+</div>
+
+<% if (isMember && plan.start_date <= today) { %>
+<div class="card p-3 border border-success">
+  <div class="fw-semibold mb-2"><i class="bi bi-check2-circle"></i> 登記本次完登</div>
+  <form method="post" action="/plans/<%= plan.id %>/complete" class="d-flex flex-wrap gap-3 align-items-end">
+    <div>
+      <% peaks.forEach((p) => { const done = memberDone.get(currentUser.id).has(p.no); %>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" name="peaks" value="<%= p.no %>" id="cp<%= p.no %>" checked>
+          <label class="form-check-label" for="cp<%= p.no %>"><%= p.name %><%= done ? '（已完登過）' : '' %></label>
+        </div>
+      <% }) %>
+    </div>
+    <div><label class="form-label small mb-0">完登日期</label>
+      <input type="date" class="form-control form-control-sm" name="climbDate" min="<%= plan.start_date %>" max="<%= plan.end_date < today ? plan.end_date : today %>" value="<%= plan.end_date < today ? plan.end_date : today %>"></div>
+    <button class="btn btn-success btn-sm">登記完登</button>
+  </form>
+</div>
+<% } %>
+
+<script>
+  const targets = <%- JSON.stringify(peaks).replace(/</g, '\\u003c') %>.filter((p) => p.lat != null);
+  const map = PeakMap.create(document.getElementById('map'));
+  targets.forEach((p) => PeakMap.marker(p, PeakMap.COLORS.target, 10).bindPopup(PeakMap.popupHtml(p)).addTo(map));
+  if (targets.length) map.fitBounds(L.latLngBounds(targets.map((p) => [p.lat, p.lng])).pad(0.5), { maxZoom: 12 });
+</script>
+<%- include('partials/foot') %>
