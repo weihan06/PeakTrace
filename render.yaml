@@ -1,4 +1,4 @@
-# Render Blueprint：免費方案，檔案系統不保留，重啟或重新部署後 SQLite 資料會清空
+# Render Blueprint：免費方案，檔案系統不保留，重啟或重新部署後 JSON 資料檔會清空
 services:
   - type: web
     name: peaktrace

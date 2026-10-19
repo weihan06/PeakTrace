@@ -1,16 +1,29 @@
-import { db } from './db.js';
+import { store, allPeaks, getPeak } from './store.js';
 import { REGIONS } from './regions.js';
+import { todayTaipei } from './weather.js';
 
-export const allPeaks = () => db.prepare('SELECT * FROM peaks ORDER BY no').all();
-export const getPeak = (no) => db.prepare('SELECT * FROM peaks WHERE no = ?').get(no);
-export const getUser = (id) => db.prepare('SELECT id, username, display_name, created_at FROM users WHERE id = ?').get(id);
+export { allPeaks, getPeak };
+
+const userView = (u) => u && { id: u.id, username: u.username, display_name: u.display_name, created_at: u.created_at };
+export const getUser = (id) => userView(store.users.find((u) => u.id === id));
+export const findUserByName = (username) => store.users.find((u) => u.username.toLowerCase() === username.toLowerCase());
+
+const byDateDesc = (a, b) => b.climb_date.localeCompare(a.climb_date) || b.id - a.id;
 
 /** 使用者各座百岳完登狀態：Map<peak_no, { first_date, last_date, times }> */
 export function doneMap(userId) {
-  const rows = db.prepare(`
-    SELECT peak_no, MIN(climb_date) AS first_date, MAX(climb_date) AS last_date, COUNT(*) AS times
-    FROM climbs WHERE user_id = ? GROUP BY peak_no`).all(userId);
-  return new Map(rows.map((r) => [r.peak_no, r]));
+  const map = new Map();
+  for (const c of store.climbs) {
+    if (c.user_id !== userId) continue;
+    const d = map.get(c.peak_no);
+    if (!d) map.set(c.peak_no, { peak_no: c.peak_no, first_date: c.climb_date, last_date: c.climb_date, times: 1 });
+    else {
+      if (c.climb_date < d.first_date) d.first_date = c.climb_date;
+      if (c.climb_date > d.last_date) d.last_date = c.climb_date;
+      d.times++;
+    }
+  }
+  return map;
 }
 
 export function userStats(userId) {
@@ -21,21 +34,19 @@ export function userStats(userId) {
     return { region, total: list.length, done: list.filter((p) => done.has(p.no)).length };
   }).filter((r) => r.total > 0);
 
-  const byYear = db.prepare(`
-    SELECT substr(first_date, 1, 4) AS year, COUNT(*) AS n FROM (
-      SELECT MIN(climb_date) AS first_date FROM climbs WHERE user_id = ? GROUP BY peak_no
-    ) GROUP BY year ORDER BY year`).all(userId);
+  const yearCount = {};
+  for (const d of done.values()) yearCount[d.first_date.slice(0, 4)] = (yearCount[d.first_date.slice(0, 4)] ?? 0) + 1;
+  const byYear = Object.keys(yearCount).sort().map((year) => ({ year, n: yearCount[year] }));
 
   const donePeaks = peaks.filter((p) => done.has(p.no));
   const highest = donePeaks.reduce((a, p) => (!a || p.elevation > a.elevation ? p : a), null);
-  const totalClimbs = db.prepare('SELECT COUNT(*) AS n FROM climbs WHERE user_id = ?').get(userId).n;
 
   return {
     total: peaks.length,
     done: done.size,
     percent: peaks.length ? Math.round((done.size / peaks.length) * 1000) / 10 : 0,
     remaining: peaks.length - done.size,
-    totalClimbs,
+    totalClimbs: store.climbs.filter((c) => c.user_id === userId).length,
     byRegion,
     byYear,
     highest,
@@ -44,32 +55,52 @@ export function userStats(userId) {
   };
 }
 
-export function recentClimbs(userId, limit = 10) {
-  return db.prepare(`
-    SELECT c.*, p.name, p.elevation, p.region FROM climbs c JOIN peaks p ON p.no = c.peak_no
-    WHERE c.user_id = ? ORDER BY c.climb_date DESC, c.id DESC LIMIT ?`).all(userId, limit);
+/** 登山紀錄附上百岳資料 */
+export function userClimbs(userId, limit = Infinity) {
+  return store.climbs.filter((c) => c.user_id === userId).sort(byDateDesc).slice(0, limit)
+    .map((c) => {
+      const p = getPeak(c.peak_no);
+      return { ...c, name: p.name, elevation: p.elevation, region: p.region, counties: p.counties };
+    });
+}
+export const recentClimbs = (userId, limit = 10) => userClimbs(userId, limit);
+
+export function peakClimbs(peakNo, limit = 30) {
+  return store.climbs.filter((c) => c.peak_no === peakNo).sort(byDateDesc).slice(0, limit)
+    .map((c) => ({ ...c, display_name: getUser(c.user_id)?.display_name ?? '（已刪除）' }));
 }
 
-export function planPeaks(planId) {
-  return db.prepare('SELECT p.* FROM plan_peaks pp JOIN peaks p ON p.no = pp.peak_no WHERE pp.plan_id = ? ORDER BY p.no').all(planId);
+export function leaderboard() {
+  return store.users.map((u) => {
+    const mine = store.climbs.filter((c) => c.user_id === u.id);
+    return {
+      ...userView(u),
+      done: new Set(mine.map((c) => c.peak_no)).size,
+      last_climb: mine.reduce((m, c) => (!m || c.climb_date > m ? c.climb_date : m), null),
+    };
+  }).sort((a, b) => b.done - a.done || (b.last_climb ?? '').localeCompare(a.last_climb ?? ''));
 }
-export function planMembers(planId) {
-  return db.prepare(`
-    SELECT u.id, u.username, u.display_name FROM plan_members m JOIN users u ON u.id = m.user_id
-    WHERE m.plan_id = ? ORDER BY m.joined_at`).all(planId);
+
+export const findPlan = (id) => store.plans.find((pl) => pl.id === id);
+export const planPeaks = (plan) => plan.peak_nos.map(getPeak).filter(Boolean).sort((a, b) => a.no - b.no);
+export const planMembers = (plan) => plan.members.map((m) => getUser(m.user_id)).filter(Boolean);
+export const isPlanMember = (plan, userId) => plan.members.some((m) => m.user_id === userId);
+
+/** 行程附上發起人、人數、百岳資料 */
+export function planView(plan) {
+  return {
+    ...plan,
+    creator_name: getUser(plan.creator_id)?.display_name ?? '（已刪除）',
+    member_count: plan.members.length,
+    peaks: planPeaks(plan),
+  };
 }
 
 export function listPlans({ upcoming, userId } = {}) {
-  const where = [];
-  const args = [];
-  if (upcoming === true) where.push("pl.end_date >= date('now', '+8 hours')");
-  if (upcoming === false) where.push("pl.end_date < date('now', '+8 hours')");
-  if (userId) { where.push('pl.id IN (SELECT plan_id FROM plan_members WHERE user_id = ?)'); args.push(userId); }
-  const plans = db.prepare(`
-    SELECT pl.*, u.display_name AS creator_name,
-      (SELECT COUNT(*) FROM plan_members m WHERE m.plan_id = pl.id) AS member_count
-    FROM plans pl JOIN users u ON u.id = pl.creator_id
-    ${where.length ? 'WHERE ' + where.join(' AND ') : ''}
-    ORDER BY pl.start_date ${upcoming === false ? 'DESC' : 'ASC'}`).all(...args);
-  return plans.map((pl) => ({ ...pl, peaks: planPeaks(pl.id) }));
+  const today = todayTaipei();
+  return store.plans
+    .filter((pl) => (upcoming === true ? pl.end_date >= today : upcoming === false ? pl.end_date < today : true))
+    .filter((pl) => !userId || isPlanMember(pl, userId))
+    .sort((a, b) => (upcoming === false ? b.start_date.localeCompare(a.start_date) : a.start_date.localeCompare(b.start_date)))
+    .map(planView);
 }

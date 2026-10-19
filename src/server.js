@@ -4,8 +4,8 @@ import { randomBytes } from 'node:crypto';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { DATA_DIR, seedPeaks } from './db.js';
-import { SqliteStore } from './session-store.js';
+import { DATA_DIR, allPeaks } from './store.js';
+import { JsonSessionStore } from './session-store.js';
 import authRoutes from './routes/auth.js';
 import mainRoutes from './routes/main.js';
 import planRoutes from './routes/plans.js';
@@ -20,7 +20,7 @@ function sessionSecret() {
   return readFileSync(file, 'utf8').trim();
 }
 
-console.log(`已載入 ${seedPeaks()} 座百岳`);
+console.log(`已載入 ${allPeaks().length} 座百岳`);
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -29,7 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(ROOT, 'public')));
 app.use(session({
-  store: new SqliteStore(),
+  store: new JsonSessionStore(),
   secret: sessionSecret(),
   resave: false,
   saveUninitialized: false,

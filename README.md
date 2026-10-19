@@ -11,14 +11,14 @@ npm run dev        # 開發模式，修改程式自動重啟
 npm run scrape     # 重新從維基百科抓取百岳資料 → data/peaks.json
 ```
 
-需求：Node.js 22.13 以上（使用內建 `node:sqlite`，不需編譯原生模組）。
+需求：Node.js 20 以上。資料以 JSON 檔儲存，不需要資料庫。
 
 ## 功能
 
 | 功能 | 說明 |
 | --- | --- |
-| 百岳資料 | `scripts/scrape-peaks.js` 解析中文維基百科「台灣百岳」表格，以 MediaWiki / Wikidata API 補座標。欄位：編號、名稱、高度、縣市、北中南東區域、山脈、路線、國家公園、分級、Google 地圖連結。伺服器啟動時自動匯入 SQLite。 |
-| 多使用者 | 只需輸入帳號即可登入（不驗證密碼），新帳號自動建立；session 存於 SQLite |
+| 百岳資料 | `scripts/scrape-peaks.js` 解析中文維基百科「台灣百岳」表格，以 MediaWiki / Wikidata API 補座標。欄位：編號、名稱、高度、縣市、北中南東區域、山脈、路線、國家公園、分級、Google 地圖連結。伺服器啟動時直接讀取。 |
+| 多使用者 | 只需輸入帳號即可登入（不驗證密碼），新帳號自動建立；session 存於 `data/sessions.json` |
 | 登山紀錄 | Select2 搜尋（依區域分組，可用山名 / 編號 / 縣市搜尋）＋ Leaflet 台灣地圖點選，兩者同步；選好後填完登日期 |
 | 儀表板 | 完成數 / 百分比、分區完成度、最高登頂、累積高度、完登地圖、每年新完登、即將出發行程 |
 | 約爬山 | 設定日期與目標百岳，其他使用者可報名；行程頁顯示目標資訊、地圖、各成員已完登狀況，以及天氣；行程結束後可一鍵登記完登 |
@@ -32,10 +32,20 @@ npm run scrape     # 重新從維基百科抓取百岳資料 → data/peaks.json
 ```
 scripts/scrape-peaks.js   百岳爬蟲
 src/server.js             Express 進入點
-src/db.js                 SQLite schema、百岳匯入
+src/store.js              JSON 檔儲存（帳號、紀錄、行程）、百岳資料讀取
 src/weather.js            Open-Meteo 預報 / 歷年同期
 src/routes/               auth、main（儀表板/紀錄/百岳）、plans（約爬山）
 views/                    EJS 頁面
 public/js/                peak-map.js（地圖）、peak-picker.js（select2 + 地圖挑選器）
-data/                     peaks.json、peaktrace.db（執行後產生）
+data/                     peaks.json；store.json、sessions.json（執行後產生）
 ```
+
+## 資料檔
+
+| 檔案 | 內容 |
+| --- | --- |
+| `data/peaks.json` | 百岳清單（`npm run scrape` 產生，納入版控） |
+| `data/store.json` | 使用者、登山紀錄、約爬山行程（自動產生） |
+| `data/sessions.json` | 登入狀態（自動產生） |
+
+資料都放在記憶體，每次異動後整檔寫回（先寫暫存檔再改名）。只適合單一伺服器程序執行。可用 `DATA_DIR` 環境變數改資料夾位置。

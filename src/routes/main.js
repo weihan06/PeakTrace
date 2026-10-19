@@ -1,7 +1,9 @@
 import { Router } from 'express';
-import { db, tx } from '../db.js';
+import { mutate, nextId, now } from '../store.js';
 import { REGIONS } from '../regions.js';
-import { allPeaks, getPeak, getUser, doneMap, userStats, recentClimbs, listPlans } from '../queries.js';
+import {
+  allPeaks, getPeak, getUser, doneMap, userStats, recentClimbs, userClimbs, peakClimbs, leaderboard, listPlans,
+} from '../queries.js';
 import { getForecast, todayTaipei } from '../weather.js';
 import { requireLogin, flash, isDate, toPeakNos, asyncHandler } from './helpers.js';
 
@@ -20,15 +22,14 @@ function renderDashboard(res, user, isSelf) {
   });
 }
 
-router.get('/dashboard', requireLogin, (req, res) => renderDashboard(res, getUser(req.session.user.id), true));
+router.get('/dashboard', requireLogin, (req, res, next) => {
+  const user = getUser(req.session.user.id);
+  if (!user) return req.session.destroy(() => res.redirect('/login')); // 資料檔被清空時
+  renderDashboard(res, user, true);
+});
 
 router.get('/users', requireLogin, (req, res) => {
-  const users = db.prepare(`
-    SELECT u.id, u.username, u.display_name, u.created_at,
-      COUNT(DISTINCT c.peak_no) AS done, MAX(c.climb_date) AS last_climb
-    FROM users u LEFT JOIN climbs c ON c.user_id = u.id
-    GROUP BY u.id ORDER BY done DESC, last_climb DESC`).all();
-  res.render('users', { title: '山友排行', users });
+  res.render('users', { title: '山友排行', users: leaderboard() });
 });
 
 router.get('/users/:id', requireLogin, (req, res, next) => {
@@ -46,9 +47,7 @@ router.get('/peaks', requireLogin, (req, res) => {
 router.get('/peaks/:no', requireLogin, asyncHandler(async (req, res, next) => {
   const peak = getPeak(Number(req.params.no));
   if (!peak) return next();
-  const climbs = db.prepare(`
-    SELECT c.*, u.display_name FROM climbs c JOIN users u ON u.id = c.user_id
-    WHERE c.peak_no = ? ORDER BY c.climb_date DESC LIMIT 30`).all(peak.no);
+  const climbs = peakClimbs(peak.no);
   const plans = listPlans({ upcoming: true }).filter((pl) => pl.peaks.some((p) => p.no === peak.no));
   let weather = null;
   let weatherError = null;
@@ -62,18 +61,28 @@ router.get('/peaks/:no', requireLogin, asyncHandler(async (req, res, next) => {
 
 // ---- 登山紀錄 ----
 router.get('/climbs', requireLogin, (req, res) => {
-  const uid = req.session.user.id;
-  const climbs = db.prepare(`
-    SELECT c.*, p.name, p.elevation, p.region, p.counties FROM climbs c JOIN peaks p ON p.no = c.peak_no
-    WHERE c.user_id = ? ORDER BY c.climb_date DESC, p.no`).all(uid);
   res.render('climbs', {
     title: '登山紀錄',
-    climbs,
+    climbs: userClimbs(req.session.user.id),
     regions: REGIONS,
     preselect: toPeakNos(req.query.peak),
     today: todayTaipei(),
   });
 });
+
+/** 新增完登紀錄，同一人同一天同一座山只記一次；回傳新增筆數 */
+export function addClimbs(userId, peakNos, climbDate, note, planId = null) {
+  return mutate((s) => {
+    let added = 0;
+    for (const no of peakNos) {
+      if (!getPeak(no)) continue;
+      if (s.climbs.some((c) => c.user_id === userId && c.peak_no === no && c.climb_date === climbDate)) continue;
+      s.climbs.push({ id: nextId('climbs'), user_id: userId, peak_no: no, climb_date: climbDate, note: note || null, plan_id: planId, created_at: now() });
+      added++;
+    }
+    return added;
+  });
+}
 
 router.post('/climbs', requireLogin, (req, res) => {
   const peakNos = toPeakNos(req.body.peaks);
@@ -82,15 +91,16 @@ router.post('/climbs', requireLogin, (req, res) => {
   if (!isDate(climbDate)) { flash(req, 'danger', '請選擇完登日期'); return res.redirect('/climbs'); }
   if (climbDate > todayTaipei()) { flash(req, 'danger', '完登日期不能晚於今天'); return res.redirect('/climbs'); }
 
-  const insert = db.prepare('INSERT OR IGNORE INTO climbs (user_id, peak_no, climb_date, note) VALUES (?, ?, ?, ?)');
-  const added = tx(() => peakNos.filter((no) => getPeak(no))
-    .reduce((n, no) => n + Number(insert.run(req.session.user.id, no, climbDate, note.trim() || null).changes), 0));
+  const added = addClimbs(req.session.user.id, peakNos, climbDate, note.trim());
   flash(req, 'success', added ? `已新增 ${added} 筆完登紀錄 🎉` : '這些紀錄已經存在');
   res.redirect('/climbs');
 });
 
 router.post('/climbs/:id/delete', requireLogin, (req, res) => {
-  db.prepare('DELETE FROM climbs WHERE id = ? AND user_id = ?').run(Number(req.params.id), req.session.user.id);
+  const id = Number(req.params.id);
+  mutate((s) => {
+    s.climbs = s.climbs.filter((c) => !(c.id === id && c.user_id === req.session.user.id));
+  });
   flash(req, 'success', '已刪除紀錄');
   res.redirect(req.get('Referer')?.includes('/peaks/') ? req.get('Referer') : '/climbs');
 });

@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import { db } from '../db.js';
+import { mutate, nextId, now } from '../store.js';
+import { findUserByName } from '../queries.js';
 import { flash } from './helpers.js';
 
 const router = Router();
@@ -12,11 +13,14 @@ router.post('/login', (req, res) => {
   if (!username || username.length > 30) {
     return res.status(400).render('login', { title: '登入', username, flash: { type: 'danger', message: '請輸入 1–30 個字的帳號' } });
   }
-  let user = db.prepare('SELECT * FROM users WHERE username = ?').get(username);
+  let user = findUserByName(username);
   const isNew = !user;
   if (isNew) {
-    const { lastInsertRowid } = db.prepare("INSERT INTO users (username, display_name, password_hash) VALUES (?, ?, '')").run(username, username);
-    user = { id: Number(lastInsertRowid), username, display_name: username };
+    user = mutate((s) => {
+      const u = { id: nextId('users'), username, display_name: username, created_at: now() };
+      s.users.push(u);
+      return u;
+    });
   }
   const returnTo = req.session.returnTo ?? '/dashboard';
   req.session.regenerate((err) => {
