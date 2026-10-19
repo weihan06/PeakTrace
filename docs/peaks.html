@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>百岳一覽｜PeakTrace 百岳完登紀錄</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="css/app.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/peak-map.js"></script>
+</head>
+<body>
+<script type="module">
+  import { initPage, run, esc, REGIONS, loadPeaks, listClimbs, doneMap } from './js/app.js';
+
+  run(async () => {
+    const { user, main } = initPage({ title: '百岳一覽' });
+    const [allPeaks, climbs] = await Promise.all([loadPeaks(), listClimbs({ userId: user.id })]);
+    const done = doneMap(climbs);
+    const peaks = allPeaks.map((p) => ({ ...p, done: done.get(p.no) ?? null }));
+
+    main.innerHTML = `
+<div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+  <h1 class="h3 mb-0">台灣百岳一覽</h1>
+  <div class="btn-group" role="group" id="regionFilter">
+    <button class="btn btn-outline-success active" data-region="">全部</button>
+    ${REGIONS.map((r) => `<button class="btn btn-outline-success" data-region="${r}">${r}</button>`).join('')}
+  </div>
+</div>
+<div class="card p-3 mb-3"><div id="map" class="peak-map"></div></div>
+<div class="card p-3">
+  <div class="d-flex gap-2 mb-2">
+    <input id="q" class="form-control" placeholder="搜尋山名、縣市、山脈、路線…">
+    <select id="status" class="form-select" style="max-width: 10rem">
+      <option value="">全部狀態</option><option value="done">已完登</option><option value="todo">未完登</option>
+    </select>
+  </div>
+  <div class="table-responsive">
+  <table class="table table-hover table-sm mb-0" id="peakTable">
+    <thead><tr><th>編號</th><th>名稱</th><th>高度 (m)</th><th>縣市</th><th>區域</th><th>山脈</th><th>國家公園</th><th>座標</th><th>狀態</th></tr></thead>
+    <tbody>${peaks.map((p) => `
+      <tr data-no="${p.no}" data-region="${p.region}" data-done="${p.done ? 'done' : 'todo'}" data-text="${esc([p.no, p.name, p.counties, p.region, p.range_name, p.route, p.national_park].join(' '))}">
+        <td>${p.no}</td>
+        <td><a href="peak.html?no=${p.no}" class="fw-semibold">${esc(p.name)}</a></td>
+        <td>${p.elevation}</td>
+        <td class="small">${esc(p.counties)}</td>
+        <td>${p.region}</td>
+        <td class="small">${esc(p.range_name)}</td>
+        <td class="small">${esc(p.national_park)}</td>
+        <td class="small">${p.lat != null ? `<a href="${p.google_maps_url}" target="_blank" rel="noopener">${p.lat.toFixed(4)}, ${p.lng.toFixed(4)}</a>` : ''}</td>
+        <td>${p.done ? `<span class="badge text-bg-success"><i class="bi bi-check-lg"></i> ${p.done.first_date}</span>`
+          : `<a href="climbs.html?peak=${p.no}" class="btn btn-sm btn-outline-success py-0">登記</a>`}</td>
+      </tr>`).join('')}
+    </tbody>
+  </table>
+  </div>
+</div>`;
+
+    const map = PeakMap.create(document.getElementById('map'));
+    const markers = peaks.filter((p) => p.lat != null).map((p) => ({
+      p, m: PeakMap.marker(p, p.done ? PeakMap.COLORS.done : PeakMap.COLORS.todo).bindPopup(PeakMap.popupHtml(p)).addTo(map),
+    }));
+    PeakMap.legend(map, [['已完登', PeakMap.COLORS.done], ['未完登', PeakMap.COLORS.todo]]);
+
+    let region = '';
+    function apply() {
+      const q = document.getElementById('q').value.trim();
+      const st = document.getElementById('status').value;
+      const visible = new Set();
+      document.querySelectorAll('#peakTable tbody tr').forEach((tr) => {
+        const ok = (!region || tr.dataset.region === region) && (!st || tr.dataset.done === st) && (!q || tr.dataset.text.includes(q));
+        tr.hidden = !ok;
+        if (ok) visible.add(Number(tr.dataset.no));
+      });
+      markers.forEach(({ p, m }) => (visible.has(p.no) ? m.addTo(map) : m.remove()));
+    }
+    document.querySelectorAll('#regionFilter button').forEach((b) => b.addEventListener('click', () => {
+      document.querySelectorAll('#regionFilter button').forEach((x) => x.classList.remove('active'));
+      b.classList.add('active');
+      region = b.dataset.region;
+      apply();
+    }));
+    document.getElementById('q').addEventListener('input', apply);
+    document.getElementById('status').addEventListener('change', apply);
+  });
+</script>
+</body>
+</html>

@@ -1,15 +1,22 @@
-// 以 Open-Meteo（免金鑰）取得山區天氣。傳入 elevation 讓氣溫依山頂高度修正。
+// 以 Open-Meteo（免金鑰、允許瀏覽器直接呼叫）取得山區天氣。傳入 elevation 讓氣溫依山頂高度修正。
+import { todayTaipei } from './app.js';
+
 const FORECAST_DAYS = 16;
 const cache = new Map();
 
-async function cachedJson(url, ttlMs) {
-  const hit = cache.get(url);
-  if (hit && hit.expires > Date.now()) return hit.data;
-  const res = await fetch(url, { signal: AbortSignal.timeout(10000) });
-  if (!res.ok) throw new Error(`Open-Meteo ${res.status}: ${await res.text()}`);
-  const data = await res.json();
-  cache.set(url, { data, expires: Date.now() + ttlMs });
-  return data;
+async function cachedJson(url) {
+  if (!cache.has(url)) {
+    cache.set(url, fetch(url, { signal: AbortSignal.timeout(10000) }).then(async (res) => {
+      if (!res.ok) throw new Error(`Open-Meteo ${res.status}`);
+      return res.json();
+    }));
+  }
+  try {
+    return await cache.get(url);
+  } catch (e) {
+    cache.delete(url);
+    throw e;
+  }
 }
 
 const WMO = {
@@ -21,13 +28,12 @@ const WMO = {
   80: ['短暫陣雨', '🌦️'], 81: ['陣雨', '🌧️'], 82: ['強陣雨', '⛈️'], 85: ['陣雪', '🌨️'], 86: ['強陣雪', '❄️'],
   95: ['雷雨', '⛈️'], 96: ['雷雨伴冰雹', '⛈️'], 99: ['強雷雨伴冰雹', '⛈️'],
 };
-export const describeCode = (code) => {
+const describeCode = (code) => {
   const [text, icon] = WMO[code] ?? ['未知', '❔'];
   return { text, icon };
 };
 
-const todayTaipei = () => new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Taipei' });
-const addDays = (iso, n) => {
+export const addDays = (iso, n) => {
   const d = new Date(`${iso}T00:00:00Z`);
   d.setUTCDate(d.getUTCDate() + n);
   return d.toISOString().slice(0, 10);
@@ -53,9 +59,6 @@ function dailyRows(daily) {
     precip: daily.precipitation_sum[i],
     precipProb: daily.precipitation_probability_max?.[i] ?? null,
     wind: daily.wind_speed_10m_max[i],
-    gust: daily.wind_gusts_10m_max?.[i] ?? null,
-    sunrise: daily.sunrise?.[i]?.slice(11) ?? null,
-    sunset: daily.sunset?.[i]?.slice(11) ?? null,
   }));
 }
 
@@ -64,17 +67,18 @@ export async function getForecast(peaks) {
   const url = new URL('https://api.open-meteo.com/v1/forecast');
   url.search = new URLSearchParams({
     ...locParams(peaks),
-    daily: 'weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max,wind_speed_10m_max,wind_gusts_10m_max,sunrise,sunset',
+    daily: 'weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max,wind_speed_10m_max',
     forecast_days: FORECAST_DAYS,
   });
-  const data = asArray(await cachedJson(url.toString(), 30 * 60 * 1000));
+  const data = asArray(await cachedJson(url.toString()));
   return new Map(peaks.map((p, i) => [p.no, dailyRows(data[i].daily)]));
 }
 
 /** 過去 years 年同期（相同月日）的實際觀測，作為長期預報不可得時的參考 */
 async function getClimatology(peaks, startDate, endDate, years = 5) {
-  const thisYear = Number(todayTaipei().slice(0, 4));
-  const lastAvailable = addDays(todayTaipei(), -7);
+  const today = todayTaipei();
+  const thisYear = Number(today.slice(0, 4));
+  const lastAvailable = addDays(today, -7);
   const perPeak = new Map(peaks.map((p) => [p.no, []]));
   const requests = [];
   for (let y = thisYear - years; y <= thisYear; y++) {
@@ -88,7 +92,7 @@ async function getClimatology(peaks, startDate, endDate, years = 5) {
       start_date: s,
       end_date: e,
     });
-    requests.push(cachedJson(url.toString(), 24 * 3600 * 1000).then((d) => ({ year: y, data: asArray(d) })));
+    requests.push(cachedJson(url.toString()).then((d) => ({ year: y, data: asArray(d) })));
   }
   const results = (await Promise.allSettled(requests)).filter((r) => r.status === 'fulfilled').map((r) => r.value);
   results.sort((a, b) => b.year - a.year).slice(0, years).forEach(({ year, data }) => {
@@ -105,8 +109,6 @@ async function getClimatology(peaks, startDate, endDate, years = 5) {
         tmax: Math.max(...y.rows.map((r) => r.tmax)),
         tmin: Math.min(...y.rows.map((r) => r.tmin)),
         precip: y.rows.reduce((s, r) => s + (r.precip ?? 0), 0),
-        rainyDays: y.rows.filter((r) => r.precip >= 1).length,
-        days: y.rows.length,
         ...describeCode(Math.max(...y.rows.map((r) => r.code))),
       })),
       avgTmax: avg('tmax'),
@@ -120,7 +122,7 @@ async function getClimatology(peaks, startDate, endDate, years = 5) {
 
 /**
  * 依行程日期取得天氣：日期在 16 天預報範圍內 → 逐日預報；否則 → 歷年同期參考。
- * 回傳 { mode: 'forecast'|'climate'|'past', perPeak: Map }
+ * 回傳 { mode: 'forecast'|'climate'|'past'|'none', perPeak: Map }
  */
 export async function getTripWeather(peaks, startDate, endDate = startDate) {
   peaks = peaks.filter((p) => p.lat != null);
@@ -136,11 +138,8 @@ export async function getTripWeather(peaks, startDate, endDate = startDate) {
       perPeak.set(no, rows.filter((r) => r.date >= addDays(startDate, -1) && r.date <= addDays(endDate, 1))
         .map((r) => ({ ...r, inTrip: r.date >= startDate && r.date <= endDate })));
     }
-    const partial = endDate > lastForecast;
-    return { mode: 'forecast', partial, lastForecast, perPeak };
+    return { mode: 'forecast', partial: endDate > lastForecast, lastForecast, perPeak };
   }
   const perPeak = await getClimatology(peaks, startDate, endDate);
   return { mode: 'climate', perPeak, forecastFrom: addDays(startDate, -(FORECAST_DAYS - 1)) };
 }
-
-export { todayTaipei, addDays };

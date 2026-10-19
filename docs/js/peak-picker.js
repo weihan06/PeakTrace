@@ -1,7 +1,7 @@
 /* global $, L, PeakMap */
 // 百岳挑選器：select2 下拉 + 台灣地圖點選，雙向同步
-window.initPeakPicker = async function ({ select, map: mapEl, preselect = [] }) {
-  const peaks = await (await fetch('/api/peaks')).json();
+// peaks：百岳陣列，每筆含 done（是否已完登）
+window.initPeakPicker = function ({ select, map: mapEl, peaks, preselect = [] }) {
   const $select = $(select);
   const byNo = new Map(peaks.map((p) => [p.no, p]));
 

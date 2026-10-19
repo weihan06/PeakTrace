@@ -1,0 +1,58 @@
+rules_version = '2';
+
+// PeakTrace 只用帳號登入（沒有密碼 / Firebase Auth），因此無法驗證「是誰」在寫入，
+// 這裡只檢查資料格式，避免寫入亂七八糟的內容。
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isDate(v) { return v is string && v.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$'); }
+    function isText(v, max) { return v == null || (v is string && v.size() <= max); }
+    function userExists(id) { return exists(/databases/$(database)/documents/users/$(id)); }
+
+    // users/{u_帳號}
+    match /users/{userId} {
+      allow read: if true;
+      allow create: if request.resource.data.keys().hasOnly(['username', 'display_name', 'created_at'])
+        && request.resource.data.username is string
+        && request.resource.data.username.size() >= 1 && request.resource.data.username.size() <= 30
+        && request.resource.data.display_name == request.resource.data.username;
+      allow update, delete: if false;
+    }
+
+    // climbs/{userId_peakNo_date}
+    match /climbs/{climbId} {
+      allow read: if true;
+      allow create: if request.resource.data.keys().hasOnly(['user_id', 'peak_no', 'climb_date', 'note', 'plan_id', 'created_at'])
+        && request.resource.data.peak_no is int
+        && request.resource.data.peak_no >= 1 && request.resource.data.peak_no <= 100
+        && isDate(request.resource.data.climb_date)
+        && climbId == request.resource.data.user_id + '_' + string(request.resource.data.peak_no) + '_' + request.resource.data.climb_date
+        && isText(request.resource.data.note, 200)
+        && userExists(request.resource.data.user_id);
+      allow update: if false;
+      allow delete: if true;
+    }
+
+    // plans/{autoId}
+    match /plans/{planId} {
+      allow read: if true;
+      allow create: if request.resource.data.keys().hasOnly([
+          'creator_id', 'creator_name', 'title', 'start_date', 'end_date',
+          'meeting_point', 'notes', 'created_at', 'peak_nos', 'member_ids'])
+        && isText(request.resource.data.title, 60) && request.resource.data.title != null
+        && isDate(request.resource.data.start_date) && isDate(request.resource.data.end_date)
+        && request.resource.data.end_date >= request.resource.data.start_date
+        && isText(request.resource.data.meeting_point, 100)
+        && isText(request.resource.data.notes, 2000)
+        && request.resource.data.peak_nos is list
+        && request.resource.data.peak_nos.size() >= 1 && request.resource.data.peak_nos.size() <= 100
+        && request.resource.data.member_ids == [request.resource.data.creator_id]
+        && userExists(request.resource.data.creator_id);
+      // 報名 / 退出：只能改 member_ids
+      allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(['member_ids'])
+        && request.resource.data.member_ids is list
+        && request.resource.data.member_ids.size() <= 100;
+      allow delete: if true;
+    }
+  }
+}

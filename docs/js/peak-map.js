@@ -28,10 +28,10 @@ window.PeakMap = (function () {
   }
 
   function popupHtml(p) {
-    const done = p.done ? `<div class="text-success small">✔ 已完登 ${p.first_date ?? p.done.first_date ?? ''}</div>` : '';
+    const done = p.done ? `<div class="text-success small">✔ 已完登 ${p.done.first_date ?? ''}</div>` : '';
     return `<div class="fw-bold">#${p.no} ${p.name}</div>
       <div class="small">${p.elevation} m｜${p.counties}｜${p.region}</div>${done}
-      <div class="small mt-1"><a href="/peaks/${p.no}">詳細資料</a> · <a href="${p.google_maps_url}" target="_blank" rel="noopener">Google 地圖</a></div>`;
+      <div class="small mt-1"><a href="peak.html?no=${p.no}">詳細資料</a> · <a href="${p.google_maps_url}" target="_blank" rel="noopener">Google 地圖</a></div>`;
   }
 
   function marker(p, color, radius = 7) {

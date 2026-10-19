@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>百岳｜PeakTrace 百岳完登紀錄</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="css/app.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/peak-map.js"></script>
+</head>
+<body>
+<script type="module">
+  import { initPage, run, esc, params, dateRange, weatherDays, loadPeaks, listClimbs, listUsers, listPlans } from './js/app.js';
+  import { getForecast } from './js/weather.js';
+
+  run(async () => {
+    const { user, main } = initPage({ title: '百岳', active: 'peaks.html' });
+    const no = Number(params.get('no'));
+    const [peaks, climbs, users, plans] = await Promise.all([
+      loadPeaks(), listClimbs({ peakNo: no }), listUsers(), listPlans({ upcoming: true }),
+    ]);
+    const peak = peaks.find((p) => p.no === no);
+    if (!peak) { main.innerHTML = '<div class="card p-4">找不到這座百岳。</div>'; return; }
+    document.title = `${peak.name}｜PeakTrace`;
+    const names = new Map(users.map((u) => [u.id, u.display_name]));
+    const mine = climbs.filter((c) => c.user_id === user.id);
+    const related = plans.filter((pl) => pl.peak_nos.includes(no));
+
+    main.innerHTML = `
+<div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+  <h1 class="h3 mb-0">#${peak.no} ${esc(peak.name)} <small class="text-body-secondary fs-5">${peak.elevation} m</small>
+    ${mine.length ? '<span class="badge text-bg-success fs-6 align-middle">已完登</span>' : ''}</h1>
+  <div class="d-flex gap-2">
+    <a href="climbs.html?peak=${peak.no}" class="btn btn-success"><i class="bi bi-check2-circle"></i> 登記完登</a>
+    <a href="plan-new.html?peak=${peak.no}" class="btn btn-outline-success"><i class="bi bi-calendar-plus"></i> 約爬這座</a>
+  </div>
+</div>
+
+<div class="row g-3 mb-3">
+  <div class="col-lg-5">
+    <div class="card p-3 h-100">
+      <table class="table table-sm mb-0">
+        <tr><th style="width:7rem">編號</th><td>${peak.no}</td></tr>
+        <tr><th>高度</th><td>${peak.elevation} m</td></tr>
+        <tr><th>縣市</th><td>${esc(peak.counties)}</td></tr>
+        <tr><th>區域</th><td>${peak.region}</td></tr>
+        <tr><th>山脈</th><td>${esc(peak.range_name)}</td></tr>
+        <tr><th>登山路線</th><td>${esc(peak.route)}</td></tr>
+        <tr><th>國家公園</th><td>${esc(peak.national_park) || '—'}</td></tr>
+        <tr><th>難度分級</th><td>${peak.grade ?? '—'} <small class="text-body-secondary">（0–6 級）</small></td></tr>
+        <tr><th>座標</th><td>${peak.lat != null ? `${peak.lat}, ${peak.lng}<br>
+          <a href="${peak.google_maps_url}" target="_blank" rel="noopener"><i class="bi bi-geo-alt"></i> Google 地圖</a>` : ''}</td></tr>
+        <tr><th>參考資料</th><td><a href="${peak.wiki_url}" target="_blank" rel="noopener">維基百科</a></td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="col-lg-7"><div class="card p-3 h-100"><div id="map" class="peak-map small h-100" style="min-height:320px"></div></div></div>
+</div>
+
+<div class="card p-3 mb-3">
+  <div class="fw-semibold mb-2"><i class="bi bi-cloud-sun"></i> 山頂 16 天天氣預報 <small class="text-body-secondary">（依 ${peak.elevation} m 高度修正）</small></div>
+  <div id="weather"><div class="spinner-border spinner-border-sm text-secondary"></div></div>
+</div>
+
+<div class="row g-3">
+  <div class="col-md-6">
+    <div class="card p-3 h-100">
+      <div class="fw-semibold mb-2">即將出發的相關行程</div>
+      ${related.length ? '' : `<div class="text-body-secondary small">尚無行程，<a href="plan-new.html?peak=${peak.no}">發起一個</a>？</div>`}
+      ${related.map((pl) => `<a href="plan.html?id=${pl.id}" class="d-block mb-2">${dateRange(pl.start_date, pl.end_date)} · ${esc(pl.title)}（${pl.member_ids.length} 人）</a>`).join('')}
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card p-3 h-100">
+      <div class="fw-semibold mb-2">山友完登紀錄</div>
+      ${climbs.length ? '' : '<div class="text-body-secondary small">尚無人完登</div>'}
+      <ul class="list-group list-group-flush">
+      ${climbs.slice(0, 30).map((c) => `<li class="list-group-item px-0 d-flex justify-content-between align-items-center">
+          <span><a href="index.html?user=${encodeURIComponent(c.user_id)}">${esc(names.get(c.user_id) ?? '（已刪除）')}</a> <small class="text-body-secondary">${esc(c.note)}</small></span>
+          <span class="small text-body-secondary">${c.climb_date}</span></li>`).join('')}
+      </ul>
+    </div>
+  </div>
+</div>`;
+
+    if (peak.lat != null) {
+      const map = PeakMap.create(document.getElementById('map'));
+      map.setView([peak.lat, peak.lng], 12);
+      PeakMap.marker(peak, PeakMap.COLORS.selected, 10).addTo(map);
+    }
+
+    const wx = document.getElementById('weather');
+    try {
+      wx.innerHTML = weatherDays((await getForecast([peak])).get(peak.no));
+    } catch (e) {
+      wx.innerHTML = `<div class="text-body-secondary small">目前無法取得天氣資料：${esc(e.message)}</div>`;
+    }
+  });
+</script>
+</body>
+</html>

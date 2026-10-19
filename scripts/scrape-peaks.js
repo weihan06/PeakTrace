@@ -1,13 +1,13 @@
 // 從中文維基百科「台灣百岳」條目抓取百岳清單，並以 MediaWiki / Wikidata API 補上座標。
-// 執行：npm run scrape  → 產生 data/peaks.json
+// 執行：npm run scrape  → 產生 docs/data/peaks.json
 import { writeFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-import { countyToRegion } from '../src/regions.js';
+import { countyToRegion } from './regions.js';
 
 const API = 'https://zh.wikipedia.org/w/api.php';
 const UA = 'PeakTrace/1.0 (Taiwan 100 peaks tracker)';
-const OUT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'data', 'peaks.json');
+const OUT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'docs', 'data', 'peaks.json');
 
 async function api(params) {
   const url = new URL(API);

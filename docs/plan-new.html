@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>發起登山行程｜PeakTrace 百岳完登紀錄</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="css/app.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/peak-map.js"></script>
+  <script src="js/peak-picker.js"></script>
+</head>
+<body>
+<script type="module">
+  import {
+    initPage, run, params, flash, showAlert, busy, isDate, todayTaipei, now,
+    loadPeaks, listClimbs, doneMap, createPlan,
+  } from './js/app.js';
+
+  run(async () => {
+    const { user, main } = initPage({ title: '發起登山行程', active: 'plans.html' });
+    const today = todayTaipei();
+    const [peaks, climbs] = await Promise.all([loadPeaks(), listClimbs({ userId: user.id })]);
+    const byNo = new Map(peaks.map((p) => [p.no, p]));
+    const done = doneMap(climbs);
+
+    main.innerHTML = `
+<h1 class="h3 mb-3">發起登山行程</h1>
+<form id="planForm" class="card p-3">
+  <div class="row g-3">
+    <div class="col-lg-5">
+      <div class="mb-3">
+        <label class="form-label">目標百岳 <small class="text-body-secondary">（可複選，也可點地圖）</small></label>
+        <select id="peakSelect" name="peaks" multiple required></select>
+      </div>
+      <div class="row g-2 mb-3">
+        <div class="col-6"><label class="form-label">出發日期</label>
+          <input type="date" class="form-control" name="startDate" min="${today}" required></div>
+        <div class="col-6"><label class="form-label">結束日期</label>
+          <input type="date" class="form-control" name="endDate" min="${today}"></div>
+      </div>
+      <div class="mb-3"><label class="form-label">行程名稱 <small class="text-body-secondary">（留空則以山名命名）</small></label>
+        <input class="form-control" name="title" maxlength="60" placeholder="例：雪山主東三天兩夜"></div>
+      <div class="mb-3"><label class="form-label">集合地點 / 時間</label>
+        <input class="form-control" name="meetingPoint" maxlength="100" placeholder="例：台中高鐵站 05:00"></div>
+      <div class="mb-3"><label class="form-label">說明</label>
+        <textarea class="form-control" name="notes" rows="4" maxlength="2000" placeholder="入園申請、山屋、裝備、費用分攤…"></textarea></div>
+      <button class="btn btn-success w-100"><i class="bi bi-send"></i> 建立行程</button>
+    </div>
+    <div class="col-lg-7"><div id="pickMap" class="peak-map h-100" style="min-height:460px"></div></div>
+  </div>
+</form>`;
+
+    initPeakPicker({
+      select: '#peakSelect',
+      map: document.getElementById('pickMap'),
+      peaks: peaks.map((p) => ({ ...p, done: done.get(p.no) ?? null })),
+      preselect: params.getAll('peak').map(Number),
+    });
+
+    const form = document.getElementById('planForm');
+    form.startDate.addEventListener('change', () => {
+      form.endDate.min = form.startDate.value;
+      if (!form.endDate.value || form.endDate.value < form.startDate.value) form.endDate.value = form.startDate.value;
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const nos = ($('#peakSelect').val() || []).map(Number).filter((no) => byNo.has(no)).sort((a, b) => a - b);
+      const startDate = form.startDate.value;
+      const endDate = form.endDate.value || startDate;
+      if (!nos.length) return showAlert('danger', '請至少選擇一座目標百岳');
+      if (!isDate(startDate) || !isDate(endDate)) return showAlert('danger', '請選擇出發與結束日期');
+      if (endDate < startDate) return showAlert('danger', '結束日期不能早於出發日期');
+      busy(form, true);
+      try {
+        const id = await createPlan({
+          creator_id: user.id,
+          creator_name: user.displayName,
+          title: form.title.value.trim() || nos.map((no) => byNo.get(no).name).join('、'),
+          start_date: startDate,
+          end_date: endDate,
+          meeting_point: form.meetingPoint.value.trim() || null,
+          notes: form.notes.value.trim() || null,
+          created_at: now(),
+          peak_nos: nos,
+          member_ids: [user.id],
+        });
+        flash('success', '行程已建立，把連結分享給山友一起報名吧！');
+        location.href = `plan.html?id=${id}`;
+      } catch (err) {
+        showAlert('danger', `建立失敗：${err.message}`);
+        busy(form, false);
+      }
+    });
+  });
+</script>
+</body>
+</html>

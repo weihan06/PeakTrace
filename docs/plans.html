@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>約爬山｜PeakTrace 百岳完登紀錄</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/app.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<script type="module">
+  import { initPage, run, esc, dateRange, peakBadges, loadPeaks, listPlans } from './js/app.js';
+
+  run(async () => {
+    const { user, main } = initPage({ title: '約爬山' });
+    const [peaks, upcoming, past] = await Promise.all([loadPeaks(), listPlans({ upcoming: true }), listPlans({ upcoming: false })]);
+    const byNo = new Map(peaks.map((p) => [p.no, p]));
+
+    const card = (pl) => `
+  <div class="col-md-6 col-xl-4">
+    <a href="plan.html?id=${pl.id}" class="card p-3 h-100 text-decoration-none text-body">
+      <div class="d-flex justify-content-between">
+        <div class="fw-semibold">${esc(pl.title)}</div>
+        ${pl.member_ids.includes(user.id) ? '<span class="badge text-bg-success">已報名</span>' : ''}
+      </div>
+      <div class="small text-body-secondary mb-2"><i class="bi bi-calendar-event"></i> ${dateRange(pl.start_date, pl.end_date)}
+        · 發起人 ${esc(pl.creator_name)} · ${pl.member_ids.length} 人</div>
+      <div>${peakBadges(pl.peak_nos, byNo)}</div>
+    </a>
+  </div>`;
+
+    main.innerHTML = `
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="h3 mb-0">約爬山</h1>
+  <a href="plan-new.html" class="btn btn-success"><i class="bi bi-calendar-plus"></i> 發起行程</a>
+</div>
+<h2 class="h5">即將出發</h2>
+<div class="row g-3 mb-4">
+  ${upcoming.length ? upcoming.map(card).join('') : '<div class="col text-body-secondary">目前沒有行程，發起一個吧！</div>'}
+</div>
+${past.length ? `<h2 class="h5">過去的行程</h2><div class="row g-3 opacity-75">${past.slice(0, 20).map(card).join('')}</div>` : ''}`;
+  });
+</script>
+</body>
+</html>
